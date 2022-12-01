@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Component_1_45" width="236.368" height="102.209" viewBox="0 0 236.368 102.209">
+    <defs>
+        <style>
+            .cls-1{fill:#792034}
+        </style>
+    </defs>
+    <path id="Subtraction_20" d="M156.036 78.018h-53.945L78.018 53.944 53.944 78.018H0L78.018 0l78.018 78.018z" class="cls-1" transform="translate(40.139 24.191)"/>
+    <path id="Subtraction_21" d="M76.985 75.052H57.871L0 17.181 17.181 0l67.428 67.428-7.624 7.624z" class="cls-1" transform="translate(151.759 27.157)"/>
+    <path id="Subtraction_22" d="M26.585 75.205H7.777L0 67.428 67.428 0l17.181 17.181-58.024 58.024z" class="cls-1" transform="translate(0 27.004)"/>
+    <path id="Rectangle_135" d="M0 0H25.979V24.451H0z" class="cls-1" transform="translate(141.893 0.108) rotate(45)"/>
+    <path id="Rectangle_136" d="M0 0H25.979V24.451H0z" class="cls-1" transform="translate(111.506 17.289) rotate(135)"/>
+</svg>

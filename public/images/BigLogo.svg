@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="423.204" height="183" viewBox="0 0 423.204 183">
+    <defs>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#792034"/>
+            <stop offset="1" stop-color="#3d101a"/>
+        </linearGradient>
+        <style>
+            .cls-1{fill:url(#linear-gradient)}
+        </style>
+    </defs>
+    <g id="Group_214" transform="translate(-678 -357)">
+        <g id="Component_1_26" transform="translate(678 357)">
+            <path id="Subtraction_20" d="M279.373 139.687h-96.584l-43.1-43.1-43.1 43.1H0L139.686 0l139.686 139.686z" class="cls-1" transform="translate(71.866 43.312)"/>
+            <path id="Subtraction_21" d="M137.837 134.377h-34.222L0 30.762 30.762 0l120.726 120.726-13.651 13.651z" class="cls-1" transform="translate(271.715 48.623)"/>
+            <path id="Subtraction_22" d="M47.6 134.651H13.924L0 120.726 120.726 0l30.762 30.762L47.6 134.651z" class="cls-1" transform="translate(0 48.349)"/>
+            <path id="Rectangle_135" d="M0 0H46.514V43.778H0z" class="cls-1" transform="translate(254.051 0.193) rotate(45)"/>
+            <path id="Rectangle_136" d="M0 0H46.514V43.778H0z" class="cls-1" transform="translate(199.645 30.956) rotate(135)"/>
+        </g>
+    </g>
+</svg>

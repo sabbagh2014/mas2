@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="273.478" height="273.478" viewBox="0 0 273.478 273.478">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        filter: url(#Ellipse_18);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f26a6a"/>
+      <stop offset="1" stop-color="#793535"/>
+    </linearGradient>
+    <filter id="Ellipse_18" x="0" y="0" width="273.478" height="273.478" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_249" data-name="Group 249" transform="translate(-882.5 -450)">
+    <g class="cls-3" transform="matrix(1, 0, 0, 1, 882.5, 450)">
+      <circle id="Ellipse_18-2" data-name="Ellipse 18" class="cls-1" cx="127.739" cy="127.739" r="127.739" transform="translate(9 6)"/>
+    </g>
+    <g id="Group_147" data-name="Group 147" transform="translate(931.604 545.12)">
+      <g id="Component_1_46" data-name="Component 1 – 46" transform="translate(0)">
+        <path id="Subtraction_20" data-name="Subtraction 20" class="cls-2" d="M116.192,58.1H76.023L58.1,40.17,40.17,58.1H0L58.1,0l58.1,58.1Z" transform="translate(29.889 18.014)"/>
+        <path id="Subtraction_21" data-name="Subtraction 21" class="cls-2" d="M57.327,55.888H43.094L0,12.794,12.794,0,63,50.211l-5.677,5.677Z" transform="translate(113.008 20.223)"/>
+        <path id="Subtraction_22" data-name="Subtraction 22" class="cls-2" d="M19.8,56H5.791L0,50.211,50.211,0,63,12.794,19.8,56Z" transform="translate(0 20.108)"/>
+        <rect id="Rectangle_135" data-name="Rectangle 135" class="cls-2" width="19.345" height="18.207" transform="translate(105.661 0.08) rotate(45)"/>
+        <rect id="Rectangle_136" data-name="Rectangle 136" class="cls-2" width="19.345" height="18.207" transform="translate(83.033 12.875) rotate(135)"/>
+      </g>
+    </g>
+    <g id="Group_150" data-name="Group 150" transform="translate(931.604 545.12)">
+      <g id="Component_1_47" data-name="Component 1 – 47" transform="translate(0)">
+        <path id="Subtraction_20-2" data-name="Subtraction 20" class="cls-2" d="M116.192,58.1H76.023L58.1,40.17,40.17,58.1H0L58.1,0l58.1,58.1Z" transform="translate(29.889 18.014)"/>
+        <path id="Subtraction_21-2" data-name="Subtraction 21" class="cls-2" d="M57.327,55.888H43.094L0,12.794,12.794,0,63,50.211l-5.677,5.677Z" transform="translate(113.008 20.223)"/>
+        <path id="Subtraction_22-2" data-name="Subtraction 22" class="cls-2" d="M19.8,56H5.791L0,50.211,50.211,0,63,12.794,19.8,56Z" transform="translate(0 20.108)"/>
+        <rect id="Rectangle_135-2" data-name="Rectangle 135" class="cls-2" width="19.345" height="18.207" transform="translate(105.661 0.08) rotate(45)"/>
+        <rect id="Rectangle_136-2" data-name="Rectangle 136" class="cls-2" width="19.345" height="18.207" transform="translate(83.033 12.875) rotate(135)"/>
+      </g>
+    </g>
+  </g>
+</svg>

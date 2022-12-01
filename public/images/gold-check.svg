@@ -1,0 +1,9 @@
+<svg id="icons8_instagram_verification_badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="46.605" height="46.605" viewBox="0 0 46.605 46.605">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="1.278" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f0b90b"/>
+      <stop offset="1" stop-color="#785d06"/>
+    </linearGradient>
+  </defs>
+  <path id="icons8_instagram_verification_badge-2" data-name="icons8_instagram_verification_badge" d="M31.236,1.7l-.8.412L24.994,4.9,18.75,1.7,14.943,7.594l-7.006.354-.35,7.008L1.7,18.764l3.2,6.242L1.7,31.25l5.893,3.807.354,7.006,7.008.35L18.764,48.3l6.242-3.2,6.244,3.2,3.807-5.893,7.006-.354.35-7.008L48.3,31.236l-3.2-6.242,3.2-6.244-5.893-3.807-.354-7.006-7.008-.35Zm-.7,2.605,3.383,5.232,6.225.309.314,6.225,5.233,3.381-2.838,5.545L45.7,30.539l-5.232,3.383-.309,6.225-6.225.314-3.381,5.233-5.545-2.838L19.461,45.7l-3.383-5.232-6.225-.309-.314-6.225L4.307,30.551l2.838-5.545L4.3,19.461l5.232-3.383.309-6.225,6.225-.314,3.381-5.232,5.545,2.838Zm1.936,14.162-10.2,9.889-4.732-4.732L15.42,25.742l6.82,6.82L34.563,20.619Z" transform="translate(-1.697 -1.697)" fill="url(#linear-gradient)"/>
+</svg>
