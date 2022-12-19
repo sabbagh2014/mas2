@@ -103,8 +103,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     '& img': {
       width: 'auto',
-      minHeight: '300px',
-      maxHeight: '360px',
+      minHeight: '200px',
+      maxHeight: '260px',
       maxWidth: '95%',
     },
     '& video': {
