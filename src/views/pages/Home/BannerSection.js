@@ -109,8 +109,8 @@ const useStyles = makeStyles(() => ({
     },
     '& video': {
       width: 'auto',
-      minHeight: '300px',
-      maxHeight: '360px',
+      minHeight: '400x',
+      maxHeight: '460px',
       maxWidth: '95%',
     },
   },
