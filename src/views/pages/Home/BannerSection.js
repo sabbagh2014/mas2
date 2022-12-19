@@ -102,7 +102,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     '& img': {
-      width: 'auto',
+      width: 'max',
       minHeight: '200px',
       maxHeight: '260px',
       maxWidth: '100%',
