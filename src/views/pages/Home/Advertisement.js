@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
   },
   container: {
     width: '970px',
-    height: '70px',
+    height: '150px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
