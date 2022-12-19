@@ -105,7 +105,7 @@ const useStyles = makeStyles(() => ({
       width: 'auto',
       minHeight: '200px',
       maxHeight: '260px',
-      maxWidth: '50%',
+      maxWidth: '100%',
     },
     '& video': {
       width: 'auto',
