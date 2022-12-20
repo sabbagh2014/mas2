@@ -547,7 +547,7 @@ export default function BundleDetails() {
         <Container maxWidth="lg">
           <Box
             className={classes.bannerimg}
-            style={{ background: "https://res.cloudinary.com/marvelouse-agency-of-support/image/upload/v1671451327/ivrzshdhxwec6jd23paa.jpg" }}
+            style={{ background: "url(/images/TestImg.png)" }}
           ></Box>
           <Box className={classes.headbox2}>
             <Box style={{ display: "flex", flexWrap: "wrap" }}>
