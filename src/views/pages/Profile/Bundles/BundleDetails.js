@@ -547,7 +547,7 @@ export default function BundleDetails() {
         <Container maxWidth="lg">
           <Box
             className={classes.bannerimg}
-            style={{ background: "url(/images/TestImg.png)" }}
+            style={{ background: "url(/images/TestImg.jpg)" }}
           ></Box>
           <Box className={classes.headbox2}>
             <Box style={{ display: "flex", flexWrap: "wrap" }}>
