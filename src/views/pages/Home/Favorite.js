@@ -69,7 +69,7 @@ const useStyles = makeStyles(() => ({
   },
   mas: {
     padding: "30px 0",
-    marginBottom: "30px",
+    marginBottom: "10px",
     borderBottom: " solid 0.5px #707070",
   },
 }));
