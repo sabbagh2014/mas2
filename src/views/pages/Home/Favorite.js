@@ -63,7 +63,7 @@ const useStyles = makeStyles(() => ({
     },
     "& p": {
       color: "#fff !important",
-      marginTop: "10px",
+      marginTop: "50px",
       textAlign: "left",
     },
   },
