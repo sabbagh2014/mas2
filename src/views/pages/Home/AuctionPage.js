@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
   },
   sectionHeading: {
     padding: "1.5px 0 0",
-    backgroundColor: "var(--white)",
+    backgroundColor: "var(--yallo)",
     display: "flex",
     justifyContent: "center",
   },
@@ -70,8 +70,8 @@ const AuctionPage = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
-    centerMode: true,
-    autoplay: true,
+    centerMode: false,
+    autoplay: false,
     infinite: false,
     responsive: [
       {
@@ -79,9 +79,9 @@ const AuctionPage = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "1",
-          autoplay: true,
+          centerMode: false,
+          centerPadding: "0",
+          autoplay: false,
         },
       },
       {
@@ -89,9 +89,9 @@ const AuctionPage = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          centerMode: true,
-          centerPadding: "1",
-          autoplay: true,
+          centerMode: false,
+          centerPadding: "0",
+          autoplay: false,
         },
       },
       {
@@ -99,9 +99,9 @@ const AuctionPage = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "1",
-          autoplay: true,
+          centerMode: false,
+          centerPadding: "0",
+          autoplay: false,
         },
       },
     ],
