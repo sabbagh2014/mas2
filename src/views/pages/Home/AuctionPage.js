@@ -70,8 +70,8 @@ const AuctionPage = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
-    centerMode: false,
-    autoplay: false,
+    centerMode: true,
+    autoplay: true,
     infinite: false,
     responsive: [
       {
@@ -79,9 +79,9 @@ const AuctionPage = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          centerMode: false,
-          centerPadding: "0",
-          autoplay: false,
+          centerMode: true,
+          centerPadding: "1",
+          autoplay: true,
         },
       },
       {
@@ -89,9 +89,9 @@ const AuctionPage = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          centerMode: false,
-          centerPadding: "0",
-          autoplay: false,
+          centerMode: true,
+          centerPadding: "1",
+          autoplay: true,
         },
       },
       {
@@ -99,9 +99,9 @@ const AuctionPage = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: false,
-          centerPadding: "0",
-          autoplay: false,
+          centerMode: true,
+          centerPadding: "1",
+          autoplay: true,
         },
       },
     ],
