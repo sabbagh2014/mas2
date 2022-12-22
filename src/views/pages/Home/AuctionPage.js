@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
     padding: "0px 0px 35px",
     fontFamily: "Poppins",
-    fontSize: "32px",
+    fontSize: "64px",
     fontWeight: "700",
     fontStretch: "normal",
     fontStyle: "normal",
