@@ -218,7 +218,7 @@ const AuctionPage = () => {
         <div id="bundle_section" className={classes.sectionHeading}>
           <Typography variant="h2" component='h2'
             onClick={() => navigate("/bundles")}
-            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#fafafa" }}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
           >
             Trending Bundles
           </Typography>
