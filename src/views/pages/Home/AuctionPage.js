@@ -67,46 +67,39 @@ const AuctionPage = () => {
   const [isLoadingAuctions, setIsLaodingAuctions] = useState(false);
   const settings = {
     dots: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    arrows: true,
-    centerMode: false,
-    autoplay: false,
-    infinite: false,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          centerMode: false,
-          centerPadding: "0",
-          autoplay: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
         },
-      },
-      
-      {
-     breakpoint: 800,
-       settings: {
-          slidesToShow: 2,
-         slidesToScroll: 2,
-         centerMode: false,
-          centerPadding: "0",
-          autoplay: false,
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
         },
-      },
-      {
-        breakpoint: 450,
-        settings: {
-         slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: false,
-          centerPadding: "0",
-          autoplay: false,
-       },
-      },
-   ],
-  };
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    };
+    
 
   const auctionNftListHandler = async () => {
     setIsLaodingAuctions(true);
