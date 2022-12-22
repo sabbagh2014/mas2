@@ -82,7 +82,8 @@ const AuctionPage = () => {
           centerMode: false,
           centerPadding: "0",
           autoplay: false,
-        },},
+        },
+      },
       
       {
      breakpoint: 800,
@@ -103,7 +104,7 @@ const AuctionPage = () => {
           centerPadding: "0",
           autoplay: false,
        },
-      ,
+      },
    ],
   };
 
