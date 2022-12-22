@@ -100,7 +100,7 @@ function Bids(props) {
         settings: {
           slidesToShow: 1,
           centerMode: false,
-          centerPadding: "20px",
+          centerPadding: "40px",
           autoplay: false,
         },
       },
@@ -109,7 +109,7 @@ function Bids(props) {
         settings: {
           slidesToShow: 1,
           centerMode: false,
-          centerPadding: "20px",
+          centerPadding: "40px",
           autoplay: false,
         },
       },
