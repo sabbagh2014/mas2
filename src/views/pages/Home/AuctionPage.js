@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
     lineHeight: "1.51",
     letterSpacing: "normal",
     texAlign: "left",
-    color: "#141518",
+    color: "#444",
     marginTop: "70px",
   },
   LoginBox: {
