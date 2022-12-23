@@ -48,7 +48,7 @@ const useStyles = makeStyles(() => ({
     flexWrap: "inherit",
   },
   gridbox: {
-    "@media(max-width:1280px)": {
+    "@media(max-width:2280px)": {
       display: "flex",
       justifyContent: "center",
     },
@@ -197,7 +197,7 @@ const AuctionPage = () => {
             Featured Creators
           </Typography>
         </div>
-        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 40 : 25} numItemsPerView={4}>
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
             {userListToDisplay.map((data, i) => {
               return (
                 <UserDetailsCard key={i}
@@ -220,7 +220,7 @@ const AuctionPage = () => {
           </Typography>
         </div>
 
-        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 40 : 25} numItemsPerView={4}>
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
           {allNFTList &&
             allNFTList.map((data, i) => {
               return (
