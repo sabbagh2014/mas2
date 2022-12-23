@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     
     border: " solid 0.5px #e5e3dd",
     color: "#141518",
-    height: "100px",
+    height: "48px",
     width: "100%",
     maxWidth: "500px",
     margin: "0 auto",
@@ -66,8 +66,8 @@ export default function Subscriptions({
 
   const settings = {
     dots: false,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     arrows: true,
     centerMode: false,
     autoplay: false,
@@ -77,7 +77,7 @@ export default function Subscriptions({
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 3,
           slidesToScroll: 1,
           centerMode: false,
           centerPadding: "0",
@@ -87,8 +87,8 @@ export default function Subscriptions({
       {
         breakpoint: 800,
         settings: {
-          slidesToShow: 0,
-          slidesToScroll: 0,
+          slidesToShow: 2,
+          slidesToScroll: 1,
           centerMode: false,
           centerPadding: "0",
           autoplay: false,
@@ -97,8 +97,8 @@ export default function Subscriptions({
       {
         breakpoint: 450,
         settings: {
-          slidesToShow: 0,
-          slidesToScroll: 0,
+          slidesToShow: 1,
+          slidesToScroll: 1,
           centerMode: false,
           centerPadding: "0",
           autoplay: false,
