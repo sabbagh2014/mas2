@@ -29,22 +29,22 @@ const useStyles = makeStyles(() => ({
     marginTop: "70px",
   },
   LoginBox: {
-    padding: "20px 20px",
+    padding: "0px 0px",
   },
   sectionHeading: {
-    padding: "3px 0 0",
+    padding: "1.5px 0 0",
     backgroundColor: "var(--yallo)",
     display: "flex",
     justifyContent: "center",
   },
   search: {
-    border: "0.5px solid #e5e3dd",
+    border: "1px solid #444",
     display: "flex",
     alignItems: "center",
-    borderRadius: "6.5px",
+    borderRadius: "9px",
   },
   box: {
-    paddingleft: "0",
+    paddingleft: "2",
     flexWrap: "inherit",
   },
   gridbox: {
