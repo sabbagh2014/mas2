@@ -16,7 +16,7 @@ import {isMobile} from 'react-device-detect';
 const useStyles = makeStyles(() => ({
   mas: {
     textAlign: "center",
-    padding: "0px 0px 35px",
+    padding: "35px 35px 70px",
     fontFamily: "Poppins",
     fontSize: "32px",
     fontWeight: "700",
