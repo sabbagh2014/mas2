@@ -48,7 +48,7 @@ const useStyles = makeStyles(() => ({
     flexWrap: "inherit",
   },
   gridbox: {
-    "@media(max-width:2280px)": {
+    "@media(max-width:1280px)": {
       display: "flex",
       justifyContent: "center",
     },
@@ -65,10 +65,11 @@ const AuctionPage = () => {
   const [isLoadingCreators, setIsLoadingCreators] = useState(false);
   const [isLoadingBundles, setIsBundlesLoading] = useState(false);
   const [isLoadingAuctions, setIsLaodingAuctions] = useState(false);
-  const settings = {dots: false,
+  const settings = {
+    dots: false,
     slidesToShow: 4,
     slidesToScroll: 1,
-    arrows: true,
+    arrows: false,
     className: "recomended",
     autoplay: false,
     autoplaySpeed: 3000,
