@@ -115,7 +115,7 @@ export default function Subscriptions({
         </Box>
         <Box>
           
-          <Carousel centerMode={false} centerSlidePercentage={50} numItemsPerView={4}>
+          <Carousel centerMode={true} centerSlidePercentage={50} numItemsPerView={4}>
             {subscriptions.map((data, i) => {
               return (
                 <BundleCard
