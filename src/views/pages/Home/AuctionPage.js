@@ -70,6 +70,7 @@ const AuctionPage = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
+    position: true,
     className: "recomended",
     autoplay: false,
     autoplaySpeed: 3000,
