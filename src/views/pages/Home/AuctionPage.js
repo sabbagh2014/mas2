@@ -65,9 +65,7 @@ const AuctionPage = () => {
   const [isLoadingCreators, setIsLoadingCreators] = useState(false);
   const [isLoadingBundles, setIsBundlesLoading] = useState(false);
   const [isLoadingAuctions, setIsLaodingAuctions] = useState(false);
-  //const settings = {
-    
-    };
+  const settings = {};
     
 
   const auctionNftListHandler = async () => {
