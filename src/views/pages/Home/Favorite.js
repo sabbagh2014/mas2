@@ -127,7 +127,7 @@ function Bids(props) {
 
       <Box className={classes.cardslider}>
         <Container maxWidth="lg">
-          <Carousel centerMode={true} centerSlidePercentage={25} numItemsPerView={4}>
+          <Carousel centerMode={true} centerSlidePercentage={20} numItemsPerView={2}>
             <Box>
               <Box display="flex" alignItems="center">
                 <figure >
