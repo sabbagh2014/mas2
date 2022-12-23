@@ -16,7 +16,7 @@ import {isMobile} from 'react-device-detect';
 const useStyles = makeStyles(() => ({
   mas: {
     textAlign: "center",
-    padding: "35px 35px 70px",
+    padding: "0px 0px 35px",
     fontFamily: "Poppins",
     fontSize: "32px",
     fontWeight: "700",
@@ -29,10 +29,10 @@ const useStyles = makeStyles(() => ({
     marginTop: "70px",
   },
   LoginBox: {
-    padding: "0px 0px",
+    padding: "20px 20px",
   },
   sectionHeading: {
-    padding: "1.5px 0 0",
+    padding: "3px 0 0",
     backgroundColor: "var(--yallo)",
     display: "flex",
     justifyContent: "center",
