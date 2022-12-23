@@ -69,7 +69,7 @@ const AuctionPage = () => {
     dots: false,
     slidesToShow: 4,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
     className: "recomended",
     autoplay: false,
     autoplaySpeed: 3000,
@@ -193,7 +193,7 @@ const AuctionPage = () => {
         <div id="creators_section" className={classes.sectionHeading}>
         <Typography variant="h2" component='h2'
             onClick={() => navigate("/creators")}
-            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
+            style={{ cursor: "pointer", margin: '60px auto', fontSize: '66px', color: "#444" }}
           >
             Featured Creators
           </Typography>
@@ -210,12 +210,12 @@ const AuctionPage = () => {
       </Container>
 
       <Container maxWidth='100%' style={{ paddingBottom: "30px", marginTop: "50px", 
-          backgroundClor: '#D9AFD9',
-          backgroundImage: 'linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%)'}}>
+          backgroundClor: '#444',
+          backgroundImage: 'linear-gradient(0deg, #444 0%, #97D9E1 100%)'}}>
         <div id="bundle_section" className={classes.sectionHeading}>
           <Typography variant="h2" component='h2'
             onClick={() => navigate("/bundles")}
-            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
+            style={{ cursor: "pointer", margin: '60px auto', fontSize: '66px', color: "#444" }}
           >
             Trending Bundles
           </Typography>
