@@ -38,13 +38,13 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
   },
   search: {
-    border: "1px solid #444",
+    border: "0.5px solid #e5e3dd",
     display: "flex",
     alignItems: "center",
     borderRadius: "9px",
   },
   box: {
-    paddingleft: "2",
+    paddingleft: "1",
     flexWrap: "inherit",
   },
   gridbox: {
@@ -197,7 +197,7 @@ const AuctionPage = () => {
             Featured Creators
           </Typography>
         </div>
-        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 40 : 25} numItemsPerView={4}>
             {userListToDisplay.map((data, i) => {
               return (
                 <UserDetailsCard key={i}
@@ -220,7 +220,7 @@ const AuctionPage = () => {
           </Typography>
         </div>
 
-        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 40 : 25} numItemsPerView={4}>
           {allNFTList &&
             allNFTList.map((data, i) => {
               return (
