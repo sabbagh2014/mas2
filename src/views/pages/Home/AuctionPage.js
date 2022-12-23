@@ -84,7 +84,7 @@ const AuctionPage = () => {
         },
       },
       {
-        breakpoint: 1024,
+        breakpoint: 800,
         settings: {
           slidesToShow: 1,
           centerMode: false,
@@ -93,7 +93,7 @@ const AuctionPage = () => {
         },
       },
       {
-        breakpoint: 1024,
+        breakpoint:450,
         settings: {
           slidesToShow: 1,
           centerMode: false,
