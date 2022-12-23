@@ -220,7 +220,7 @@ const AuctionPage = () => {
             Trending Bundles
           </Typography>
         </div>
-
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
         
           {allNFTList &&
             allNFTList.map((data, i) => {
