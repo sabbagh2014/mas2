@@ -89,7 +89,7 @@ const AuctionPage = () => {
         settings: {
           slidesToShow: 1,
           centerMode: false,
-          centerPadding: "20px",
+          centerPadding: "40px",
           autoplay: false,
         },
       },
@@ -98,7 +98,7 @@ const AuctionPage = () => {
         settings: {
           slidesToShow: 1,
           centerMode: false,
-          centerPadding: "20px",
+          centerPadding: "40px",
           autoplay: false,
         },
       },
