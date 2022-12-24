@@ -202,7 +202,7 @@ const AuctionPage = () => {
           </Typography>
         </div>
         <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
-            {userListToDisplay.map((data, i) => {
+            {userlist && userList.map((data, i) => {
               return (
                 <UserDetailsCard key={i}
                   data={data}
@@ -223,8 +223,7 @@ const AuctionPage = () => {
         </div>
 
         <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
-          {allNFTList &&
-            allNFTList.map((data, i) => {
+          {allNFTList && allNFTList.map((data, i) => {
               return (
                 <BundleCard key={i}
                   data={data} 
