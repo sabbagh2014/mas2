@@ -202,7 +202,7 @@ const AuctionPage = () => {
           </Typography>
         </div>
         <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4} Dots={false}>
-            {userListToDisplay.map((data, i) => {
+            {userList.map((data, i) => {
               return (
                 <UserDetailsCard 
                   data={data}
