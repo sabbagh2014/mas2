@@ -8,7 +8,6 @@ import {
 import UserDetailsCard from "src/component/UserCard";
 import BundleCard from "src/component/NewBundleCard";
 import { Carousel } from 'react-responsive-carousel';
-import { slick } from 'react-responsive-carousel';
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
 import { useNavigate } from "react-router";
@@ -202,7 +201,7 @@ const AuctionPage = () => {
            Creators
           </Typography>
         </div>
-        <slick infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+        <carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
             {userListToDisplay.map((data, i) => {
               return (
                 <UserDetailsCard 
@@ -211,7 +210,7 @@ const AuctionPage = () => {
                 />
               );
             })}
-          </slick>       
+          </carousel>       
     </Container>
 
       <Container >
