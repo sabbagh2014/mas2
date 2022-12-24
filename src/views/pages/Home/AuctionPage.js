@@ -202,7 +202,7 @@ const AuctionPage = () => {
           </Typography>
         </div>
         <Carousel>
-            {numItemsPerView:4},
+            {{numItemsPerView:4},
             {userListToDisplay.map((data, i) => {
               return (
                 <UserDetailsCard 
@@ -210,7 +210,7 @@ const AuctionPage = () => {
                   key={i}
                 />
               );
-            })}
+            })}}
           </Carousel>  
       </Container>
 
