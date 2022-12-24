@@ -201,7 +201,8 @@ const AuctionPage = () => {
            Creators
           </Typography>
         </div>
-        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4} Dots={false}>
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4} Dots={false} 
+onClick={() => navigate("/creators")}>
             {userListToDisplay.map((data, i) => {
               return (
                 <UserDetailsCard 
