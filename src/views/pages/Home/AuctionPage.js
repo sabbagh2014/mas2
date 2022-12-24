@@ -216,7 +216,7 @@ const AuctionPage = () => {
         <div id="bundle_section" className={classes.sectionHeading}>
           <Typography variant="h2" component='h2'
             onClick={() => navigate("/bundles")}
-            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#fafafa" }}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
           >
             Bundles
           </Typography>
@@ -226,9 +226,8 @@ const AuctionPage = () => {
           {allNFTList &&
             allNFTList.map((data, i) => {
               return (
-                <BundleCard
-                  data={data}
-                  key={i}
+                <BundleCard key={i}
+                  data={data} 
                 />
               );
             })}
