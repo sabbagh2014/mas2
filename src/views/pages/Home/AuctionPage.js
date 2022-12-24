@@ -164,7 +164,10 @@ const AuctionPage = () => {
             <carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
             {userListToDisplay.map((data, i) => {
               return (
-                <UserDetailsCard key={i} data={data}/>);})}
+                <UserDetailsCard key={i} data={data}
+              />
+                );
+                })}
           </carousel> 
 
       </Container>
@@ -180,7 +183,7 @@ const AuctionPage = () => {
             Trending Bundles
           </Typography>
         </div>
-        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={6}>
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
         
           {allNFTList &&
             allNFTList.map((data, i) => {
