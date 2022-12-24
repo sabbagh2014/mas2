@@ -8,6 +8,7 @@ import {
 import UserDetailsCard from "src/component/UserCard";
 import BundleCard from "src/component/NewBundleCard";
 import { Carousel } from 'react-responsive-carousel';
+import { slick } from 'react-responsive-carousel';
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
 import { useNavigate } from "react-router";
