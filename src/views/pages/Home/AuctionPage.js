@@ -24,8 +24,8 @@ const useStyles = makeStyles(() => ({
     fontStyle: "normal",
     lineHeight: "1.51",
     letterSpacing: "normal",
-    texAlign: "right",
-    color: "#444",
+    texAlign: "left",
+    color: "#141518",
     marginTop: "70px",
   },
   LoginBox: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
   },
   sectionHeading: {
     padding: "1.5px 0 0",
-    backgroundColor: "var(--yallo)",
+    backgroundColor: "var(--white)",
     display: "flex",
     justifyContent: "center",
   },
@@ -41,10 +41,10 @@ const useStyles = makeStyles(() => ({
     border: "0.5px solid #e5e3dd",
     display: "flex",
     alignItems: "center",
-    borderRadius: "9px",
+    borderRadius: "6.5px",
   },
   box: {
-    paddingleft: "1",
+    paddingleft: "0",
     flexWrap: "inherit",
   },
   gridbox: {
@@ -66,7 +66,47 @@ const AuctionPage = () => {
   const [isLoadingBundles, setIsBundlesLoading] = useState(false);
   const [isLoadingAuctions, setIsLaodingAuctions] = useState(false);
   const settings = {
+    dots: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    centerMode: false,
+    autoplay: false,
+    infinite: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: false,
+          centerPadding: "0",
+          autoplay: false,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          centerMode: false,
+          centerPadding: "0",
+          autoplay: false,
+        },
+      },
+      {
+        breakpoint: 450,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+          centerPadding: "0",
+          autoplay: false,
+        },
+      },
+    ],
   };
+
   const auctionNftListHandler = async () => {
     setIsLaodingAuctions(true);
     await axios({
@@ -161,15 +201,15 @@ const AuctionPage = () => {
             Featured Creators
           </Typography>
         </div>
-            <carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
             {userListToDisplay.map((data, i) => {
               return (
-                <UserDetailsCard key={i} data={data}
-              />
-                );
-                })}
-          </carousel> 
-
+                <UserDetailsCard key={i}
+                  data={data}
+                />
+              );
+            })}
+          </Carousel>  
       </Container>
 
       <Container maxWidth='100%' style={{ paddingBottom: "30px", marginTop: "50px", 
@@ -178,13 +218,13 @@ const AuctionPage = () => {
         <div id="bundle_section" className={classes.sectionHeading}>
           <Typography variant="h2" component='h2'
             onClick={() => navigate("/bundles")}
-            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#fafafa" }}
           >
             Trending Bundles
           </Typography>
         </div>
+
         <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
-        
           {allNFTList &&
             allNFTList.map((data, i) => {
               return (
