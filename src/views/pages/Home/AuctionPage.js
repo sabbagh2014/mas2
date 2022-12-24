@@ -202,10 +202,11 @@ const AuctionPage = () => {
           </Typography>
         </div>
         <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
-            {userlist && 
-             userList.map((data, i) => {
+            {userListToDisplay.map((data, i) => {
               return (
-                <UserDetailsCard> key={i} data={data} <UserDetailsCard/>
+                <UserDetailsCard key={i}
+                  data={data}
+                />
               );
             })}
           </Carousel>  
@@ -221,11 +222,14 @@ const AuctionPage = () => {
           </Typography>
         </div>
 
-        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+       <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
           {allNFTList &&
-           allNFTList.map((data, i) => {
+            allNFTList.map((data, i) => {
               return (
-                <BundleCard> key={i} data={data} <BundleCard/>
+                <BundleCard
+                  data={data}
+                  key={i}
+                />
               );
             })}
         </Carousel>
