@@ -60,11 +60,11 @@ const AuctionPage = () => {
   const navigate = useNavigate();
   const [auctionList, setAuctionList] = useState([]);
   const [allNFTList, setAllNFTList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState([]);
   const [userListToDisplay, setUserListToDisplay] = useState([]);
-  const [isLoadingCreators, setIsLoadingCreators] = useState(false);
-  const [isLoadingBundles, setIsBundlesLoading] = useState(false);
-  const [isLoadingAuctions, setIsLaodingAuctions] = useState(false);
+  const [isLoadingCreators, setIsLoadingCreators] = useState([]);
+  const [isLoadingBundles, setIsBundlesLoading] = useState([]);
+  const [isLoadingAuctions, setIsLaodingAuctions] = useState([]);
   const settings = {
     dots: false,
     slidesToShow: 4,
@@ -201,8 +201,7 @@ const AuctionPage = () => {
            Creators
           </Typography>
         </div>
-        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4} Dots={false} 
-onClick={() => navigate("/creators")}>
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
             {userListToDisplay.map((data, i) => {
               return (
                 <UserDetailsCard 
