@@ -60,11 +60,11 @@ const AuctionPage = () => {
   const navigate = useNavigate();
   const [auctionList, setAuctionList] = useState([]);
   const [allNFTList, setAllNFTList] = useState([]);
-  const [isLoading, setIsLoading] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [userListToDisplay, setUserListToDisplay] = useState([]);
-  const [isLoadingCreators, setIsLoadingCreators] = useState([]);
-  const [isLoadingBundles, setIsBundlesLoading] = useState([]);
-  const [isLoadingAuctions, setIsLaodingAuctions] = useState([]);
+  const [isLoadingCreators, setIsLoadingCreators] = useState(false);
+  const [isLoadingBundles, setIsBundlesLoading] = useState(false);
+  const [isLoadingAuctions, setIsLaodingAuctions] = useState(false);
   const settings = {
     dots: false,
     slidesToShow: 4,
