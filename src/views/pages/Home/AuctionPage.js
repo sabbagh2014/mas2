@@ -202,6 +202,7 @@ const AuctionPage = () => {
           </Typography>
         </div>
         <Carousel>
+            {numItemsPerView:4},
             {userListToDisplay.map((data, i) => {
               return (
                 <UserDetailsCard 
