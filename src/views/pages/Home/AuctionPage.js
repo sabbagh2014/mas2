@@ -198,35 +198,33 @@ const AuctionPage = () => {
             onClick={() => navigate("/creators")}
             style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
           >
-            Featured Creators
+          Creators
           </Typography>
         </div>
-        <Carousel infiniteLoop={true} centerMode={false} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
             {userListToDisplay.map((data, i) => {
               return (
-                <UserDetailsCard key={i}
+                <UserDetailsCard 
                   data={data}
+                  key={i}
                 />
               );
             })}
           </Carousel>  
       </Container>
 
-      <Container maxWidth='100%' style={{ paddingBottom: "30px", marginTop: "50px", 
-          backgroundClor: '#D9AFD9',
-          backgroundImage: 'linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%)'}}>
+      <Container >
         <div id="bundle_section" className={classes.sectionHeading}>
           <Typography variant="h2" component='h2'
             onClick={() => navigate("/bundles")}
-            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#fafafa" }}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
           >
-            Trending Bundles
+        Bundles
           </Typography>
         </div>
 
         <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
-          {allNFTList &&
-            allNFTList.map((data, i) => {
+          {allNFTList.map((data, i) => {
               return (
                 <BundleCard
                   data={data}
