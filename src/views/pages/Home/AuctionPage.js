@@ -161,7 +161,12 @@ const AuctionPage = () => {
             Featured Creators
           </Typography>
         </div>
-        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+        <var splide = new Splide( '.splide', {
+  perPage: 3,
+  rewind : true,
+} );
+
+splide.mount();>
           
             {userListToDisplay.map((data, i) => {
               return (
