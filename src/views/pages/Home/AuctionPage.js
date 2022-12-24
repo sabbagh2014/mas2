@@ -201,7 +201,16 @@ const AuctionPage = () => {
            Creators
           </Typography>
         </div>
-        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+        <Carousel
+  infinite={true}
+  autoPlay={true}
+  autoPlaySpeed={3000}
+  ssr
+  deviceType={deviceType}
+  itemClass="image-item"
+  responsive={responsive}
+  showDots={false}
+>
             {userListToDisplay.map((data, i) => {
               return (
                 <UserDetailsCard 
