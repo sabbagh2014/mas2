@@ -205,7 +205,7 @@ const AuctionPage = () => {
             {userlist && 
              userList.map((data, i) => {
               return (
-                <UserDetailsCard key={i} data={data}/>
+                <UserDetailsCard> key={i} data={data} <UserDetailsCard/>
               );
             })}
           </Carousel>  
@@ -225,7 +225,7 @@ const AuctionPage = () => {
           {allNFTList &&
            allNFTList.map((data, i) => {
               return (
-                <BundleCard key={i} data={data}/>
+                <BundleCard> key={i} data={data} <BundleCard/>
               );
             })}
         </Carousel>
