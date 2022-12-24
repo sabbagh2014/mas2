@@ -223,10 +223,10 @@ const AuctionPage = () => {
           </Typography>
         </div>
 
-       <Carousel> infiniteLoop={true} 
+       <Carousel  infiniteLoop={true} 
                   centerMode={true} 
                   centerSlidePercentage={isMobile ? 80 : 25}
-                  numItemsPerView={4}
+                  numItemsPerView={4}>
           {allNFTList.map((data, i) => {
               return (
                 <BundleCard
