@@ -198,36 +198,35 @@ const AuctionPage = () => {
             onClick={() => navigate("/creators")}
             style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
           >
-           Creators
+            Featured Creators
           </Typography>
         </div>
-        <carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
             {userListToDisplay.map((data, i) => {
               return (
-                <UserDetailsCard 
+                <UserDetailsCard key={i}
                   data={data}
-                  key={i}
                 />
               );
             })}
-          </carousel>       
-    </Container>
+          </Carousel>  
+      </Container>
 
-      <Container >
+      <Container maxWidth='100%' style={{ paddingBottom: "30px", marginTop: "50px", 
+          backgroundClor: '#D9AFD9',
+          backgroundImage: 'linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%)'}}>
         <div id="bundle_section" className={classes.sectionHeading}>
           <Typography variant="h2" component='h2'
             onClick={() => navigate("/bundles")}
-            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#fafafa" }}
           >
-            Bundles
+            Trending Bundles
           </Typography>
         </div>
 
-       <Carousel  infiniteLoop={true} 
-                  centerMode={true} 
-                  centerSlidePercentage={isMobile ? 80 : 25}
-                  numItemsPerView={4}>
-          {allNFTList.map((data, i) => {
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+          {allNFTList &&
+            allNFTList.map((data, i) => {
               return (
                 <BundleCard
                   data={data}
