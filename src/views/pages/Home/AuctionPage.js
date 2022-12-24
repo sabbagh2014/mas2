@@ -212,9 +212,7 @@ const AuctionPage = () => {
           </Carousel>  
       </Container>
 
-      <Container maxWidth='100%' style={{ paddingBottom: "30px", marginTop: "50px", 
-          backgroundClor: '#D9AFD9',
-          backgroundImage: 'linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%)'}}>
+      <Container >
         <div id="bundle_section" className={classes.sectionHeading}>
           <Typography variant="h2" component='h2'
             onClick={() => navigate("/bundles")}
