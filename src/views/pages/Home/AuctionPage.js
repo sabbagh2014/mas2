@@ -196,7 +196,7 @@ const AuctionPage = () => {
         <div id="creators_section" className={classes.sectionHeading}>
         <Typography variant="h2" component='h2'
             onClick={() => navigate("/creators")}
-            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '30px', color: "#444" }}
           >
           Creators
           </Typography>
@@ -217,7 +217,7 @@ const AuctionPage = () => {
         <div id="bundle_section" className={classes.sectionHeading}>
           <Typography variant="h2" component='h2'
             onClick={() => navigate("/bundles")}
-            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '30px', color: "#444" }}
           >
         Bundles
           </Typography>
@@ -239,7 +239,7 @@ const AuctionPage = () => {
         <div id="auctions_section" className={classes.sectionHeading}>
         <Typography variant="h2" component='h2'
             onClick={() => navigate("/auctions")}
-            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '30px', color: "#444" }}
           >
               NFT Auction
             </Typography>
