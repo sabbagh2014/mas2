@@ -152,15 +152,36 @@ export default function UserDetailsCard(data) {
 
   return (
     <Card className={classes.cards}>
-      <img
-            style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: 'auto', height: '100%'}}
-           onClick={() => {
-              navigate("/user-profile/" + userCardData.userName)
-            }}
-            src={userCardData.profilePic} />
-      <Box className={classes.cardContent}>
-        
-        <Box style={{
+   <img
+
+                src={userCardData.profilePic 
+
+                onClick={() =>
+
+                    history.push({
+
+                      pathname: "/user-profile",
+
+                      search: userCardData?.userName,
+
+                    })
+
+                  }
+
+                style={{
+
+                  width: "100%",
+
+                  height: "100%",
+
+                  borderRadius: "100%"
+
+                }}
+
+              />     
+<Box className={classes.cardContent}>
+           
+              <Box style={{
           textAlign: "center",
           justifyContent: "center",
           alignItems: "center",
