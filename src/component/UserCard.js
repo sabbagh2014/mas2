@@ -173,14 +173,7 @@ export default function UserDetailsCard(data) {
           flexGrow: 1,
           flexDirection: "column",
         }}>
-          <Box
-              onClick={() => {
-                history.push({
-                  pathname: "/user-profile",
-                  search: userCardData.userName,
-                });
-              }}
-            >  
+          
             <Typography
               variant="h4"
               component="h4"
@@ -193,6 +186,14 @@ export default function UserDetailsCard(data) {
                 textAlign: "center"
               }}
             >
+              <Box
+              onClick={() => {
+                history.push({
+                  pathname: "/user-profile",
+                  search: userCardData.userName,
+                });
+              }}
+            >  
               {userCardData && userCardData.name
                 ? userCardData.name
                 : userCardData.userName}
