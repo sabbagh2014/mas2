@@ -219,11 +219,15 @@ src={userCardData.profilePic} />
           className={classes.boxActions}
         >
           <Box className={classes.subButton}>
-            
+            {
+              auth.userData &&
+              auth.userLoggedIn &&
+              (
                 <Button onClick={subscribeToUserHandler}>
-                  {isSubscribed ? 'Subscribed' : 'Subscribe'}
+                  {isSubscribed ? 'Subscribed' : 'Subscribe' } 
                 </Button>
-          
+              )
+            }
             <span
               style={{
                 color: "#000",
