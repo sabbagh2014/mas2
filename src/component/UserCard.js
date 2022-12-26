@@ -208,6 +208,7 @@ export default function UserDetailsCard(data) {
                 </Typography>
               }
             </Box>
+            </Box>
           </Box>
         </Box>
         
