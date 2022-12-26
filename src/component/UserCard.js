@@ -204,7 +204,7 @@ export default function UserDetailsCard(data) {
                   {userCardData.speciality}
                 </Typography>
               }
-            </Box>
+            
           </Box>
         </Box>
         
