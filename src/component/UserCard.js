@@ -177,7 +177,7 @@ export default function UserDetailsCard(data) {
               variant="h4"
               component="h4"
               style={{
-                color: "#fbfafa",
+                color: "#444",
                 cursor: "pointer",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
