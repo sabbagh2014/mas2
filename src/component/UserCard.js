@@ -173,7 +173,7 @@ src={userCardData.profilePic} />
           flexDirection: "column",
         }}>
           
-          
+         <box>
             <Typography
               variant="h4"
               component="h4"
