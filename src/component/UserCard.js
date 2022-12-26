@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Typography, Box, Avatar, Button, Card, makeStyles } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import axios from "axios";
@@ -155,12 +154,9 @@ export default function UserDetailsCard(data) {
     <Card className={classes.cards}>
       <img
             style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: 'auto', height: '100%'}}
-           onClick={() =>
-                    history.push({
-                      pathname: "/user-profile",
-                      search: userCardData?.userName,
-                    })
-                  }
+           onClick={() => {
+              navigate("/user-profile/" + userCardData.userName)
+            }}
             src={userCardData.profilePic} />
       <Box className={classes.cardContent}>
         
@@ -174,11 +170,14 @@ export default function UserDetailsCard(data) {
           flexDirection: "column",
         }}>
           
+          <Box
+           
+          >
             <Typography
               variant="h4"
               component="h4"
               style={{
-                color: "#444",
+                color: "#fbfafa",
                 cursor: "pointer",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
@@ -186,7 +185,6 @@ export default function UserDetailsCard(data) {
                 textAlign: "center"
               }}
             >
-              
               {userCardData && userCardData.name
                 ? userCardData.name
                 : userCardData.userName}
@@ -204,13 +202,14 @@ export default function UserDetailsCard(data) {
                   {userCardData.speciality}
                 </Typography>
               }
-            
-        
+            </Box>
+          </Box>
         </Box>
         
       </Box>
       
-      <Box className={classes.boxActions}
+      <Box
+          className={classes.boxActions}
         >
           <Box className={classes.subButton}>
             
