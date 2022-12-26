@@ -178,7 +178,7 @@ src={userCardData.profilePic} />
               variant="h4"
               component="h4"
               style={{
-                color: "#444",
+                color: "#fbfafa",
                 cursor: "pointer",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
