@@ -85,7 +85,6 @@ const useStyles = makeStyles((theme) => ({
 export default function UserDetailsCard(data) {
   const userCardData = data.data;
   const navigate = useNavigate();
-  const history = useHistory();
   const classes = useStyles();
   const auth = useContext(UserContext);
 
