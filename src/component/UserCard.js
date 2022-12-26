@@ -185,15 +185,14 @@ export default function UserDetailsCard(data) {
                 width: "auto",
                 textAlign: "center"
               }}
-            >
-              <Box
               onClick={() => {
                 history.push({
                   pathname: "/user-profile",
                   search: userCardData.userName,
                 });
               }}
-            >  
+            >
+              
               {userCardData && userCardData.name
                 ? userCardData.name
                 : userCardData.userName}
@@ -211,14 +210,13 @@ export default function UserDetailsCard(data) {
                   {userCardData.speciality}
                 </Typography>
               }
-            </Box>
-          </Box>
+            
+        
         </Box>
         
       </Box>
       
-      <Box
-          className={classes.boxActions}
+      <Box className={classes.boxActions}
         >
           <Box className={classes.subButton}>
             
