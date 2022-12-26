@@ -157,7 +157,15 @@ export default function UserDetailsCard(data) {
            onClick={() => {
               navigate("/user-profile/" + userCardData.userName)
             }}
-            src={userCardData.profilePic} />                          
+            src={userCardData.profilePic} /> 
+              <Box
+              onClick={() => {
+                history.push({
+                  pathname: "/user-profile",
+                  search: userCardData.userName,
+                });
+              }}
+            >
 <Box className={classes.cardContent}>
               <Box style={{
           textAlign: "center",
