@@ -170,7 +170,6 @@ export default function UserDetailsCard(data) {
           flexDirection: "column",
         }}>
           
-          <Box>
           <Box
               onClick={() => {
                 history.push({
@@ -208,12 +207,11 @@ export default function UserDetailsCard(data) {
                   {userCardData.speciality}
                 </Typography>
               }
-              </Box>
             </Box>
           </Box>
         </Box>
         
-      </Box>
+     
       
       <Box
           className={classes.boxActions}
