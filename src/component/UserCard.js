@@ -173,18 +173,12 @@ src={userCardData.profilePic} />
           flexDirection: "column",
         }}>
           
-          <Box 
-               onClick={() => {
-                history.push({
-                  pathname: "/user-profile",
-                  search: userCardData.userName,
-                });
-              }}>
+          
             <Typography
               variant="h4"
               component="h4"
               style={{
-                color: "#fbfafa",
+                color: "#444",
                 cursor: "pointer",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
