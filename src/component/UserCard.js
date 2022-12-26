@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Typography, Box, Avatar, Button, Card, makeStyles } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import axios from "axios";
