@@ -170,7 +170,13 @@ export default function UserDetailsCard(data) {
           flexDirection: "column",
         }}>
           
-          <Box>
+          <Box 
+               onClick={() => {
+                history.push({
+                  pathname: "/user-profile",
+                  search: userCardData.userName,
+                });
+              }}>
             <Typography
               variant="h4"
               component="h4"
