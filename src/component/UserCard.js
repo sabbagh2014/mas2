@@ -152,18 +152,15 @@ export default function UserDetailsCard(data) {
 
   return (
     <Card className={classes.cards}>
-   <img
+      <img
             style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: 'auto', height: '100%'}}
-           onClick={() =>
-history.push({
-pathname: "/user-profile",
-search: userCardData?.userName,
-})
-}            
-src={userCardData.profilePic} /> 
-             
-<Box className={classes.cardContent}>
-              <Box style={{
+           onClick={() => {
+              navigate("/user-profile/" + userCardData.userName)
+            }}
+            src={userCardData.profilePic} />
+      <Box className={classes.cardContent}>
+        
+        <Box style={{
           textAlign: "center",
           justifyContent: "center",
           alignItems: "center",
@@ -173,7 +170,9 @@ src={userCardData.profilePic} />
           flexDirection: "column",
         }}>
           
-         <box>
+          <Box
+           
+          >
             <Typography
               variant="h4"
               component="h4"
@@ -213,15 +212,11 @@ src={userCardData.profilePic} />
           className={classes.boxActions}
         >
           <Box className={classes.subButton}>
-            {
-              auth.userData &&
-              auth.userLoggedIn &&
-              (
+            
                 <Button onClick={subscribeToUserHandler}>
-                  {isSubscribed ? 'Subscribed' : 'Subscribe' } 
+                  {isSubscribed ? 'Subscribed' : 'Subscribe'}
                 </Button>
-              )
-            }
+          
             <span
               style={{
                 color: "#000",
@@ -232,9 +227,9 @@ src={userCardData.profilePic} />
             >
               {
                 nbSubscribed ?
-                  nbSubscribed > 1 ?
+                  nbSubscribed > 0 ?
                     nbSubscribed + " subs" :
-                    '1 sub' : ""
+                    '0 sub' : "0 sub"
               }
             </span>
           </Box>
