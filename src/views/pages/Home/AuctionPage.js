@@ -1,23 +1,19 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  Grid,
   Container,
   Box,
   Typography,
   makeStyles,
 } from "@material-ui/core";
-import NFTCard from "src/component/NFTCard";
-import UserDetailsCard from "src/component/UserDetailsCard";
-import BundleCard from "src/component/BundleCard";
-import Slider from "react-slick";
+import UserDetailsCard from "src/component/UserCard";
+import BundleCard from "src/component/NewBundleCard";
+import { Carousel } from 'react-responsive-carousel';
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
-import NoDataFound from "src/component/NoDataFound";
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
-import Loader from "src/component/Loader";
+import { useNavigate } from "react-router";
+import {isMobile} from 'react-device-detect';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   mas: {
     textAlign: "center",
     padding: "0px 0px 35px",
@@ -35,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   LoginBox: {
     padding: "0px 0px",
   },
-  namemas: {
+  sectionHeading: {
     padding: "1.5px 0 0",
     backgroundColor: "var(--white)",
     display: "flex",
@@ -61,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AuctionPage = () => {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [auctionList, setAuctionList] = useState([]);
   const [allNFTList, setAllNFTList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -70,8 +66,8 @@ const AuctionPage = () => {
   const [isLoadingBundles, setIsBundlesLoading] = useState(false);
   const [isLoadingAuctions, setIsLaodingAuctions] = useState(false);
   const settings = {
-    dots:false,
-    slidesToShow: 5,
+    dots: false,
+    slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
     centerMode: false,
@@ -187,128 +183,103 @@ const AuctionPage = () => {
     auctionNftListHandler();
     listAllNftHandler();
     getuser();
+    let resize = setTimeout(() => { window.dispatchEvent(new Event('resize')); }, 500);
+    return () => clearTimeout(resize)
   }, []);
 
- 
+
 
   return (
-    <Box className={classes.LoginBox} id="talentCreater">
-     
-      <section>
-        <div id="home_section" className={classes.namemas}>
-          <Typography
-            className={classes.mas}
-            onClick={() => history.push("/creators")}
-            style={{ cursor: "pointer" }}
+
+    <>
+      <Container >
+        <div id="creators_section" className={classes.sectionHeading}>
+        <Typography variant="h2" component='h2'
+            onClick={() => navigate("/creators")}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
           >
-            Featured Talents and Creators
+            Featured Creators
           </Typography>
         </div>
-        &nbsp;
-        <Container maxWidth="lg">
-          {!isLoadingCreators && userListToDisplay.length === 0 ? (
-            <Box align="center" mt={4} mb={5}>
-              <NoDataFound />
-            </Box>
-          ) : (
-            ""
-          )}
-          <Grid container>
-            {" "}
-            <Slider {...settings} className="width100">
-              {userListToDisplay.map((data, i) => {
-                return (
-                  <UserDetailsCard
-                    data={data}
-                    key={i}
-                  />
-                );
-              })}{" "}
-            </Slider>
-          </Grid>
-          {isLoadingCreators && <Loader />}
-        </Container>
-        <>
-          <div id="bundle_section" className={classes.namemas}>
-            <Typography
-              onClick={() => history.push("/bundles")}
-              style={{ cursor: "pointer" }}
-              className={classes.mas}
-            >
-              Bundles
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+            {userListToDisplay.map((data, i) => {
+              return (
+                <UserDetailsCard key={i}
+                  data={data}
+                />
+              );
+            })}
+          </Carousel>  
+      </Container>
+
+      <Container maxWidth='100%' style={{ paddingBottom: "30px", marginTop: "50px", 
+          backgroundClor: '#D9AFD9',
+          backgroundImage: 'linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%)'}}>
+        <div id="bundle_section" className={classes.sectionHeading}>
+          <Typography variant="h2" component='h2'
+            onClick={() => navigate("/bundles")}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#fafafa" }}
+          >
+            Trending Bundles
+          </Typography>
+        </div>
+
+        <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
+          {allNFTList &&
+            allNFTList.map((data, i) => {
+              return (
+                <BundleCard
+                  data={data}
+                  key={i}
+                />
+              );
+            })}
+        </Carousel>
+      </Container>
+
+      <Container maxWidth='100%' style={{ padding: '0px' }} >
+        <div id="auctions_section" className={classes.sectionHeading}>
+        <Typography variant="h2" component='h2'
+            onClick={() => navigate("/auctions")}
+            style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
+          >
+              NFT Auction
             </Typography>
-          </div>
-          <Container maxWidth="lg" style={{ marginBottom: "50px" }}>
-            {!isLoadingBundles && allNFTList.length === 0 ? (
-              <Box align="center" mt={4} mb={5}>
-                <NoDataFound />
-              </Box>
-            ) : (
-              ""
-            )}
-            <Grid container style={{ paddingTop: "25px" }}>
-              <Slider {...settings} className="width100">
-                {allNFTList &&
-                  allNFTList.map((data, i) => {
-                    return (
-                      <BundleCard
-                        data={data}
-                        key={i}
-                      />
-                    );
-                  })}
-              </Slider>
-            </Grid>
-            {isLoadingBundles && <Loader />}
-          </Container>
-          <div className={classes.namemas} id="auctions">
-            <Link style={{ marginLeft: "-30px" }} to="/auctions">
-              <Typography
-                style={{ marginTop: "-20px", marginBottom: "10px" }}
-                className={classes.mas}
-              >
-                Auction
-              </Typography>
-            </Link>
-          </div>
-          <Container maxWidth="lg">
-            {!isLoadingAuctions && auctionList.length === 0 ? (
-              <Box align="center" mt={4} mb={5}>
-                
-                <Box align="center" mt={4} mb={5}>
-                <Typography
-                  variant="h1"
-                  style={{
-                    color: '#000',
-                    marginBottom: '10px',
-                    padding: '10px',
-                    fontSize: '17px',
-                  }}
-                >
-                  COMING SOON
-                </Typography>
-                <img src="images/home/nft.png" />
-              </Box>
-              </Box>
-            ) : (
-              ""
-            )}
-            <Grid container style={{ marginBottom: "50px" }} spacing={1}>
-              <Slider {...settings} className="width100">
-                {auctionList.map((data, i) => {
-                  return (
-                    <Grid item xs={12} sm={12} md={12} lg={12}>
-                      <NFTCard data={data} index={i} />
-                    </Grid>
-                  );
-                })}
-              </Slider>
-            </Grid>
-            {isLoadingAuctions && <Loader />}
-          </Container>
-        </>
-      </section>
-    </Box>
+        </div>
+        {!isLoadingAuctions && auctionList.length === 0 ? (
+
+          <Box align="center"
+            style={{
+              margin: '0px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignContent: 'center',
+              alignItems: 'center',
+              minHeight: '300px',
+              mixBlendMode: 'darken',
+              backgroundImage: 'url(/images/home/nft-comingsoon-bg.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: '50% 50%',
+            }}
+            mt={4} mb={5}>
+            <Typography
+              variant="h1"
+              style={{
+                color: '#fffa',
+                textAlign: 'center',
+                fontSize: '10vw',
+                textShadow: 'rgb(81 13 29) 1px 1px 4px'
+              }}
+            >
+              COMING SOON
+            </Typography>
+          </Box>
+        ) : (
+          ""
+        )}
+
+      </Container>
+    </>
   );
 };
 
