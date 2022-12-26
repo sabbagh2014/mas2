@@ -186,14 +186,7 @@ export default function UserDetailsCard(data) {
                 textAlign: "center"
               }}
             >
-              <Box
-              onClick={() => {
-                history.push({
-                  pathname: "/user-profile",
-                  search: userCardData.userName,
-                });
-              }}
-            >  
+              
               {userCardData && userCardData.name
                 ? userCardData.name
                 : userCardData.userName}
