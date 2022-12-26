@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Typography, Box, Avatar, Button, Card, makeStyles } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
@@ -177,19 +178,17 @@ export default function UserDetailsCard(data) {
         }}>
           
           <Box>
-          <Box>
               onClick={() => {
                 history.push({
                   pathname: "/user-profile",
                   search: userCardData.userName,
                 });
-              }}
-          </Box>            
+              }}            
 <Typography
               variant="h4"
               component="h4"
               style={{
-                color: "#fbfafa",
+                color: "#444",
                 cursor: "pointer",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
