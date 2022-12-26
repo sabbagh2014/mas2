@@ -194,7 +194,7 @@ export default function UserDetailsCard(data) {
                 userCardData.speciality &&
                 <Typography
                   style={{
-                    color: "#000",
+                    color: "#444",
                     fontWeight: "700",
                     textAlign: "center",
                     fontSize: "12px"
