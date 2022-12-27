@@ -248,10 +248,10 @@ export default function SignUp() {
             </Box>
             <Box>
              <label className={classes.labelText}>
-                رقم الهاتف 
+                Phone Number 
               </label>
               <MuiTelInput 
-              defaultCountry="US"
+              defaultCountry="TR"
               disableFormatting 
               required
               error={!phonevalid}
@@ -266,6 +266,7 @@ export default function SignUp() {
               }}
               onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
               />
+              placeholder="Phone Number (optional)"
             </Box>
 
             <Box>
