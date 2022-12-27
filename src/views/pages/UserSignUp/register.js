@@ -256,8 +256,8 @@ export default function SignUp() {
               required
               error={!phonevalid}
               helperText={!phonevalid && "Please enter valid phone number"}
-                
-              className={classes.inputText}
+                value={phone}             
+                className={classes.inputText}
               variant="outlined"
               type="tel"
               onChange={(e) => {
@@ -265,8 +265,9 @@ export default function SignUp() {
                 setphonevalid(phone =="" || isValidPhoneNumber(e));
               }}
               onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
-              placeholder="Phone Number (optional)"
               />
+           variant="outlined"
+           placeholder="Phone Number (optional)"
             </Box>
 
             <Box>
