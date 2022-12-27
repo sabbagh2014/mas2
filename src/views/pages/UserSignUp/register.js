@@ -252,12 +252,11 @@ export default function SignUp() {
               </label>
               <MuiTelInput 
               defaultCountry="TR"
-              placeholder="Phone Number (optional)"
                disableFormatting 
-               unrequired
+              required
               error={!phonevalid}
               helperText={!phonevalid && "Please enter valid phone number"}
-                value={phone}
+                
               className={classes.inputText}
               variant="outlined"
               type="tel"
@@ -266,6 +265,7 @@ export default function SignUp() {
                 setphonevalid(phone =="" || isValidPhoneNumber(e));
               }}
               onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
+              placeholder="Phone Number (optional)"
               />
             </Box>
 
