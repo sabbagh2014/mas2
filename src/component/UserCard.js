@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Typography, Box, Avatar, Button, Card, makeStyles } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
@@ -154,9 +155,7 @@ export default function UserDetailsCard(data) {
     <Card className={classes.cards}>
       <img
             style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: 'auto', height: '100%'}}
-           onClick={() => {
-              navigate("/user-profile/" + userCardData.userName)
-            }}
+          onClick={() => history.push({pathname: "/user-profile",search: userCardData?.userName,})}
             src={userCardData.profilePic} />
       <Box className={classes.cardContent}>
         
@@ -171,8 +170,13 @@ export default function UserDetailsCard(data) {
         }}>
           
           <Box
-           
-          >
+	onClick={() => {
+	history.push({
+	pathname: "/user-profile",
+	search: userCardData.userName,
+	});
+	}}
+	> 
             <Typography
               variant="h4"
               component="h4"
