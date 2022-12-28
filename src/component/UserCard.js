@@ -170,9 +170,9 @@ export default function UserDetailsCard(data) {
           flexDirection: "column",
         }}>
           
-          <Box
-           
-          >
+          <Box onClick={() => {
+              navigate("/user-profile/" + userCardData.userName)
+            }}>
             <Typography
               variant="h4"
               component="h4"
