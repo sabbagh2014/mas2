@@ -139,3 +139,116 @@ export default function UserDetailsCard(data) {
     } else {
       toast.error("Please Login");
     }
+  };
+
+  useEffect(() => {
+    setnbLike(userCardData.likesUsers.length);
+    setnbSubscribed(userCardData.followers.length);
+    if (auth.userData?._id) {
+      setisLike(userCardData.likesUsers?.includes(auth.userData._id));
+      setisSubscribed(userCardData.followers?.includes(auth.userData._id));
+    }
+  }, [])
+
+  return (
+    <Card className={classes.cards}>
+      <img
+            style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: 'auto', height: '100%'}}
+           onClick={() => {
+              navigate("/user-profile/" + userCardData.userName)
+            }}
+            src={userCardData.profilePic} />
+      <Box className={classes.cardContent}>
+        
+        <Box style={{
+          textAlign: "center",
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+          flex: 1,
+          flexGrow: 1,
+          flexDirection: "column",
+        }}>
+          
+          <Box
+           
+          >
+            <Typography
+              variant="h4"
+              component="h4"
+              style={{
+                color: "#fbfafa",
+                cursor: "pointer",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                width: "auto",
+                textAlign: "center"
+              }}
+            >
+              {userCardData && userCardData.name
+                ? userCardData.name
+                : userCardData.userName}
+            </Typography><Box>
+              {
+                userCardData.speciality &&
+                <Typography
+                  style={{
+                    color: "#000",
+                    fontWeight: "700",
+                    textAlign: "center",
+                    fontSize: "12px"
+                  }}
+                >
+                  {userCardData.speciality}
+                </Typography>
+              }
+            </Box>
+          </Box>
+        </Box>
+        
+      </Box>
+      
+      <Box
+          className={classes.boxActions}
+        >
+          <Box className={classes.subButton}>
+            
+                <Button onClick={subscribeToUserHandler}>
+                  {isSubscribed ? 'Subscribed' : 'Subscribe'}
+                </Button>
+          
+            <span
+              style={{
+                color: "#000",
+                fontWeight: "600",
+                fontSize: "12px",
+                padding: '2px'
+              }}
+            >
+              {
+                nbSubscribed ?
+                  nbSubscribed > 0 ?
+                    nbSubscribed + " subs" :
+                    '0 sub' : "0 sub"
+              }
+            </span>
+          </Box>
+          <Box style={{
+            cursor: "pointer",
+            margin: "0 3px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }} >
+            <span style={{ fontSize: '12px', margin: "1px 2px" }}>
+              {nbLike && nbLike}
+            </span>
+            <FaHeart
+              style={isLike ? { color: "red" } : { color: "#ffa0a0" }}
+              onClick={() => likeDislikeUserHandler(userCardData._id)}
+            />
+          </Box>  
+      </Box>
+    </Card>
+  );
+}
