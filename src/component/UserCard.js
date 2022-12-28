@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     borderRadius: "10px",
     width: "260px",
-    minHeight: "220px",
+    minHeight: "320px",
     margin: "12px",
     position: "relative",
     display: 'flex',
