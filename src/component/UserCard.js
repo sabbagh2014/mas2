@@ -170,7 +170,8 @@ export default function UserDetailsCard(data) {
         }}>
           
           <Box onClick={() => {navigate("/user-profile")}}
-            src={userCardData.profilePic}>
+            src={userCardData}>
+              
             <Typography
               variant="h4"
               component="h4"
