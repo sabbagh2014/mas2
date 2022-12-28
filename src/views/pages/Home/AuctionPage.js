@@ -198,17 +198,17 @@ const AuctionPage = () => {
             onClick={() => navigate("/creators")}
             style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#444" }}
           >
-            Featured Creators
+           Creators
           </Typography>
         </div>
         <Carousel infiniteLoop={true} centerMode={true} centerSlidePercentage={isMobile ? 80 : 25} numItemsPerView={4}>
             {userListToDisplay.map((data, i) => {
               return (
                 <UserDetailsCard key={i}
-                  data={data}
-                />
-              );
-            })}
+                    data={data}/>);})}
+                    onClick={() => {
+              navigate("/user-profile/" + userCardData.userName)
+            }}
           </Carousel>  
       </Container>
 
@@ -220,7 +220,7 @@ const AuctionPage = () => {
             onClick={() => navigate("/bundles")}
             style={{ cursor: "pointer", margin: '20px auto', fontSize: '66px', color: "#fafafa" }}
           >
-            Trending Bundles
+             Bundles
           </Typography>
         </div>
 
