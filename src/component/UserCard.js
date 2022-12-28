@@ -153,7 +153,7 @@ export default function UserDetailsCard(data) {
   return (
     <Card className={classes.cards}>
       <img src={userCardData.profilePic}
-style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: 'auto', height: '100%'}}/>
+style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-25%, -25%)', margin: 'auto', height: '100%'}}/>
                 <box >
                 </box>
       <Box className={classes.cardContent}>
