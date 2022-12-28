@@ -152,7 +152,7 @@ export default function UserDetailsCard(data) {
 
   return (
     <Card className={classes.cards}>
-      <img />
+      <img src={userCardData.profilePic} />
                 <box >
                 </box>
       <Box className={classes.cardContent}>
