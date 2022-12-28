@@ -155,8 +155,9 @@ export default function UserDetailsCard(data) {
     <Card className={classes.cards}>
       <img
             style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: 'auto', height: '100%'}}
+	    src={userCardData.profilePic}
           onClick={() => history.push({pathname: "/user-profile",search: userCardData?.userName,})}
-            src={userCardData.profilePic} />
+             />
       <Box className={classes.cardContent}>
         
         <Box style={{
@@ -168,15 +169,7 @@ export default function UserDetailsCard(data) {
           flexGrow: 1,
           flexDirection: "column",
         }}>
-          
-          <Box
-	onClick={() => {
-	history.push({
-	pathname: "/user-profile",
-	search: userCardData.userName,
-	});
-	}}
-	> 
+           
             <Typography
               variant="h4"
               component="h4"
