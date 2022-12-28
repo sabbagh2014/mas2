@@ -155,8 +155,9 @@ export default function UserDetailsCard(data) {
       <img
             style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: 'auto', height: '100%'}}
             src={userCardData.profilePic}
-           onClick={() => {navigate("/user-profile")}}>
-            
+           onClick={() => {
+              navigate("/user-profile/" + userCardData.userName)
+            }}>
               </img>
       <Box className={classes.cardContent}>
         
@@ -170,9 +171,7 @@ export default function UserDetailsCard(data) {
           flexDirection: "column",
         }}>
           
-          <Box onClick={() => {navigate("/user-profile")}}
-            src={userCardData.profilePic}>
-              
+          <Box onClick={() => {navigate("/user-profile + userCardData.userName")}}>
             <Typography
               variant="h4"
               component="h4"
