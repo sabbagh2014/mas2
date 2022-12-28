@@ -207,8 +207,6 @@ const AuctionPage = () => {
                 <UserDetailsCard key={i}
                     data={data}/>);})}
             }}
-            onClick={() => {
-              navigate("/user-profile/" + userCardData.userName)
           </Carousel>  
       </Container>
 
