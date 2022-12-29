@@ -387,10 +387,7 @@ export default function ProfileSettings() {
               <TextField
                 
                 value={speciality}
-                error={!speciality}
-                helperText={!speciality}
-                onChange={(e) => setspeciality(e.target.value)}
-                className={classes.input_fild2}
+                
               />
               
             </Grid>
