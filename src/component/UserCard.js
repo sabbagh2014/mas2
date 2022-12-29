@@ -152,7 +152,9 @@ export default function UserDetailsCard(data) {
 
   return (
     <Card className={classes.cards}>
-      <img src={userCardData.profilePic}
+      <Box src={userCardData.profilePic}
+onClick={() => {
+              navigate("/user-profile/" + userCardData.userName)
 style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: 'auto', height: '100%'}}/>
                 
                 
