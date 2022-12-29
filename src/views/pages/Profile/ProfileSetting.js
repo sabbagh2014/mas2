@@ -406,8 +406,6 @@ export default function ProfileSettings() {
                 multiline
                 rows={4}
                 value={bio}
-                error={!bio}
-                helperText={!bio && "Please Fill in something about you"}
                 variant="outlined"
                 className={classes.inputbox}
                 onChange={(e) => setbio(e.target.value)}
