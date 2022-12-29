@@ -388,7 +388,7 @@ export default function ProfileSettings() {
                 
                 value={speciality}
                 error={!speciality}
-                helperText={!speciality && "Please enter valid speciality"}
+                helperText={!speciality}
                 onChange={(e) => setspeciality(e.target.value)}
                 className={classes.input_fild2}
               />
