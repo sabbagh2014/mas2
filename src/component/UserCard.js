@@ -154,8 +154,9 @@ export default function UserDetailsCard(data) {
     <Card className={classes.cards}>
       <img src={userCardData.profilePic}
 style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: 'auto', height: '100%'}}/>
-                <box>
-                </box>
+                <box Box onClick={() => {
+              navigate("/user-profile/" + userCardData.userName)>
+                
       <Box className={classes.cardContent}>
         
         <Box style={{
@@ -200,6 +201,7 @@ style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 't
                 </Typography>
               }
             </Box>
+           </box>
           </Box>
         </Box>
         
