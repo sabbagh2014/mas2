@@ -389,8 +389,8 @@ export default function ProfileSettings() {
                 value={speciality}
                 //error={!speciality}
                 //helperText={!speciality && "Please enter valid speciality"}
-                onChange={(e) => setspeciality(e.target.value)}
-                className={classes.input_fild2}                
+                //onChange={(e) => setspeciality(e.target.value)}
+                //className={classes.input_fild2}                
               />
               
             </Grid>
@@ -410,9 +410,9 @@ export default function ProfileSettings() {
                 value={bio}
                 //error={!bio}
                 //helperText={!bio && "Please Fill in something about you"}
-                variant="outlined"
-                className={classes.inputbox}
-                onChange={(e) => setbio(e.target.value)}
+                //variant="outlined"
+                //className={classes.inputbox}
+                //onChange={(e) => setbio(e.target.value)}
               />
             </Grid>
           </Grid>
