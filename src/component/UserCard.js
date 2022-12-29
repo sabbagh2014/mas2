@@ -201,7 +201,7 @@ style={{zIndex:'0', position: 'absolute', top: '50%', left: '50%', transform: 't
                 </Typography>
               }
             </Box>
-           </box>
+           </Box>
           </Box>
         </Box>
         
