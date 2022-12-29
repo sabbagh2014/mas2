@@ -54,7 +54,7 @@ import {VerifyOtp} from "src/component/Modals/VerifyOtp"
 const useStyles = makeStyles((theme) => ({
   profilebg: {
     boxShadow: " 0 1.5px 3px 0 rgba(0, 0, 0, 0.16)",
-    backgroundImage: " linear-gradient(to bottom, #c04848, #480048)",
+    backgroundImage: " linear-gradient(to bottom, #c04848, #000f)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "100%",
     backgroundPosition: "center center",
