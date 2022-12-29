@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
       fontSize: "25px",
       fontWeight: "500",
-      color: "#000",
+      color: "#444",
       [theme.breakpoints.down("xs")]: {
         fontSize: "18px",
       },
@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
     "& a": {
       fontSize: "16px",
       fontWeight: "700",
-      color: "#707070",
+      color: "#444",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
