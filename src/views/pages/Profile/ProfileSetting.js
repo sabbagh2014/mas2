@@ -223,19 +223,19 @@ export default function ProfileSettings() {
     };
   };
 
-  const updateProfile = async () => {
+  //const updateProfile = async () => {
 
       //if(!name || !bio || !speciality || !profilePic ){
         //toast.error("Check field Errors !");
-      } else { 
+      } //else { 
         
-        setIsloading(true);
-        axios({
-          method: "PUT",
-          url: Apiconfigs.updateprofile,
-          headers: {
-            token: sessionStorage.getItem("token"),
-          },
+        //setIsloading(true);
+        //axios({
+         // method: "PUT",
+         // url: Apiconfigs.updateprofile,
+         // headers: {
+           // token: sessionStorage.getItem("token"),
+          //},
           data: {
             name: name,
             speciality: speciality,
