@@ -224,11 +224,7 @@ export default function ProfileSettings() {
   };
 const updateProfile = async () => {
 
-      if(!name || !bio || !speciality || !profilePic ){
-        toast.error("Check field Errors !");
-      } else { 
-        
-        setIsloading(true);
+      
         axios({
          method: "PUT",
           url: Apiconfigs.updateprofile,
