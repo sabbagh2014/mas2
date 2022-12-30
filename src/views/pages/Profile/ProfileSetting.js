@@ -222,8 +222,50 @@ export default function ProfileSettings() {
       console.log("Error: ", err);
     };
   };
+const updateProfile = async () => {
 
-  
+      if(!name || !bio || !speciality || !profilePic ){
+        toast.error("Check field Errors !");
+      } else { 
+        
+        setIsloading(true);
+        axios({
+         method: "PUT",
+          url: Apiconfigs.updateprofile,
+         headers: {
+        token: sessionStorage.getItem("token"),
+         },
+          data: {
+            name: name,
+            speciality: speciality,
+            profilePic: profilePic,
+            coverPic: cover,
+            bio: bio,
+            facebook: user.link.userfacebook,
+            twitter: user.link.usertwitter,
+            youtube: user.link.useryoutube,
+            telegram: user.link.usertelegram,
+          },
+        }).then(async (res) => {
+            if (res.data.statusCode === 200) {
+              toast.success("Your profile has been updated successfully");
+              user.updateUserData();
+            } else {
+              toast.error(res.data.responseMessage);
+            }
+            setIsloading(false);
+          })
+          .catch((error) => {
+            setIsloading(false);
+
+            if (error.response) {
+              toast.error(error.response.data.responseMessage);
+            } else {
+              toast.error(error.message);
+            }
+          });
+      }
+  };  
   useEffect( () => {
     let timer1;
     function checkechecko() {
