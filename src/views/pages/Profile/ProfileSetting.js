@@ -122,8 +122,8 @@ const useStyles = makeStyles((theme) => ({
     height: "120px",
     borderRadius: "50%",
     "& img": {
-      width: "124px",
-      height: "124px",
+      width: "1024px",
+      height: "1024px",
       borderRadius: "50%",
     },
     
