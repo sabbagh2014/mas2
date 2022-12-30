@@ -387,7 +387,7 @@ export default function ProfileSettings() {
               <TextField
                 
                 value={speciality}
-                error={speciality}
+                //error={!speciality}
                 //helperText={!speciality && "Please enter valid speciality"}
                 onChange={(e) => setspeciality(e.target.value)}
                 className={classes.input_fild2}
@@ -408,7 +408,7 @@ export default function ProfileSettings() {
                 multiline
                 rows={4}
                 value={bio}
-                error={bio}
+                //error={!bio}
                 //helperText={!bio && "Please Fill in something about you"}
                 variant="outlined"
                 className={classes.inputbox}
