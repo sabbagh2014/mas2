@@ -6,27 +6,19 @@ import {
   Button,
   TextField,
   makeStyles,
-  InputAdornment
+  Typography,
 } from "@material-ui/core";
-import {
-  Alert,
-  AlertTitle
-} from "@material-ui/lab";
-import {green, red} from '@material-ui/core/colors';
-
-import Tooltip from '@material-ui/core/Tooltip';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Apiconfigs from "src/Apiconfig/Apiconfigs";
 import { UserContext } from "src/context/User";
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import {
+  isName,
+} from "src/CommanFunction/Validation.js";
 import ButtonCircularProgress from "src/component/ButtonCircularProgress";
-import { FiCopy, FiEdit } from "react-icons/fi";
+import { FiCopy } from "react-icons/fi";
 import { toast } from "react-toastify";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import SocialAccounts from "./SocialAccounts";
-import {VerifyOtp} from "src/component/Modals/VerifyOtp"
 
 const useStyles = makeStyles((theme) => ({
   LoginBox: {
@@ -62,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   name: {
     display: "flex",
     alignItems: "center",
-    fontSize: "15px",
+    fontSize: "20px",
     color: "#141518",
     [theme.breakpoints.down("sm")]: {
       display: "block",
@@ -75,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputbox: {
     width: "100%",
-    height: "120px",
+    height: "150px",
   },
   profile: {
     display: "flex",
@@ -85,7 +77,11 @@ const useStyles = makeStyles((theme) => ({
   coverpic: {
     width: "100%",
   },
-
+  profilepic: {
+    width: "127.7px",
+    height: "127.7px",
+    borderRadius: "50%",
+  },
   coverback: {
     height: "127.7px",
     width: "100%",
@@ -98,7 +94,6 @@ const useStyles = makeStyles((theme) => ({
   },
   coverEdit: {
     color: "#ffffff",
-    fontSize: "12px",
     marginTop: "-40px",
     padding: "10px",
     position: "relative",
@@ -111,22 +106,8 @@ const useStyles = makeStyles((theme) => ({
       opacity: "0",
     },
   },
-  profilePic: {
+  profileFoto: {
     position: "relative",
-    marginBottom: "20px",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "120px",
-    height: "120px",
-    borderRadius: "50%",
-    "& img": {
-      width: "124px",
-      height: "124px",
-      borderRadius: "50%",
-    },
-    
     "& input": {
       position: "absolute",
       left: "0",
@@ -163,54 +144,29 @@ export function copyTextById(id) {
   alert(`Copied ${copyText.value}`);
 }
 
-const VerificationAlert = ({verify}) => {
-  const user = useContext(UserContext);
-
-  const [verifyOTPOpen, setVerifyOTPOpen] = useState(false);
-  return (
-    <box>
-    <Alert severity="warning" variant="outlined">
-      <AlertTitle>Security Verification</AlertTitle>
-       To secure your account and enjoy full MAS Platform features please verify
-       {' '}
-       {verify.includes('email') && 'your email address '}
-       {verify.length>1 && ' and '}
-       {verify.includes('sms') && 'your phone number '} 
-       <Button 
-      variant="text"
-      onClick={()=>setVerifyOTPOpen(true)}
-       >
-        check here!
-      </Button>
-    </Alert>
-    <VerifyOtp 
-      open={verifyOTPOpen} 
-      handleClose={()=> setVerifyOTPOpen(false)}
-      channels={verify}
-      context={'verifyLater'}
-      emailVerificationSent={false}
-      smsVerificationSent={false}
-      successCallback={()=>{
-        setVerifyOTPOpen(false);
-        user.updateUserData();
-        toast.success("Security Verification complete!");
-      }}
-    />
-    </box>
-  )
-}
-
 export default function ProfileSettings() {
-  const user = useContext(UserContext);
   const classes = useStyles();
+  const history = useHistory();
+  const user = useContext(UserContext);
   const [isLoading, setIsloading] = useState(false);
   const [name, setname] = useState(user.userProfileData?.name);
   const [speciality, setspeciality] = useState(user.userProfileData?.speciality);
   const [bio, setbio] = useState(user.userProfileData?.userbio);
-  const [profilePic, setProfilePic] = useState(user.userProfileData?.userprofilepic);
+  const [nameError, setNameError] = useState(false);
+  const [profile, setprofile] = useState();
   const [cover, setcover] = useState(user.userProfileData?.usercover);
-
-  const [needVerification, setNeedVerification] = useState([]);
+  const [validname, setvalidname] = useState(false);
+  const [validspeciality, setvalidspeciality] = useState(false);
+  const [validbio, setvalidbio] = useState(false);
+  useEffect(() => {
+    if (user.userProfileData) {
+      setname(user.userProfileData?.name);
+      setspeciality(user.userProfileData?.speciality);
+      setbio(user.userProfileData?.userbio);
+      setcover(user.userProfileData?.usercover);
+      setprofile(user.userProfileData?.userprofilepic);
+    }
+  }, [user.userProfileData]);
 
   const getBase64 = (file, cb) => {
     let reader = new FileReader();
@@ -222,21 +178,22 @@ export default function ProfileSettings() {
       console.log("Error: ", err);
     };
   };
-const updateProfile = async () => {
-if(!name || !bio || !speciality || !profilePic ){
-        toast.error("Check field Errors !");
-      } else { 
-        setIsloading(true);      
+
+  const apply = async () => {
+    if (isName(name) && isName(speciality) && isName(bio)) {
+      if (name.length <= 20) {
+        
+        setIsloading(true);
         axios({
-         method: "PUT",
+          method: "PUT",
           url: Apiconfigs.updateprofile,
-         headers: {
-        token: sessionStorage.getItem("token"),
-         },
+          headers: {
+            token: sessionStorage.getItem("token"),
+          },
           data: {
             name: name,
             speciality: speciality,
-            profilePic: profilePic,
+            profilePic: profile,
             coverPic: cover,
             bio: bio,
             facebook: user.link.userfacebook,
@@ -244,10 +201,10 @@ if(!name || !bio || !speciality || !profilePic ){
             youtube: user.link.useryoutube,
             telegram: user.link.usertelegram,
           },
-        }).then(async (res) => {
+        })
+          .then(async (res) => {
             if (res.data.statusCode === 200) {
               toast.success("Your profile has been updated successfully");
-              user.updateUserData();
             } else {
               toast.error(res.data.responseMessage);
             }
@@ -262,64 +219,46 @@ if(!name || !bio || !speciality || !profilePic ){
               toast.error(error.message);
             }
           });
+      } else {
+        setNameError(true);
       }
-  };  
-  useEffect( () => {
-    let timer1;
-    function checkechecko() {
-      if (user.isLogin && user.userData._id){
-        let verify = new Set(needVerification);
-        if (user.userData.emailVerification === false) {
-          verify.add('email')
-        } else {
-          verify.delete('email')
-        }
-        if (user.userData.phoneVerification === false) {
-          verify.add('sms');
-        } else {
-          verify.delete('sms')
-        }
-        setNeedVerification([...verify]);
-        
-      return () => {
-        clearTimeout(timer1);
-      };
     } else {
-      timer1 = setTimeout(() => {
-        checkechecko()
-      }, 500);
-    }}
-    checkechecko()
-  }, []);
-
-  useEffect(()=>{
-    setname(user.userProfileData?.name);
-    setspeciality(user.userProfileData?.speciality);
-    setbio(user.userProfileData?.userbio);
-    setProfilePic(user.userProfileData?.userprofilepic);
-    setcover(user.userProfileData?.usercover);
-  },[user.userProfileData])
-  
-  
-
+      if (!isName(name)) {
+        setvalidname(true);
+      }
+      if (!isName(name)) {
+        setvalidspeciality(true);
+      }
+      if (!isName(bio)) {
+        setvalidbio(true);
+      }
+    }
+  };
+  const sociallink = () => {
+    history.push("/socialaccounts");
+  };
   return (
     <Box className={classes.LoginBox}>
       <Grid className={classes.CoverBox}>
         <Box
           className={classes.Box}
-          style={ cover
-              ? { backgroundImage: `url(${cover})`,}
-              : null }
+          style={
+            cover
+              ? {
+                  backgroundImage: `url(${cover})`,
+                }
+              : null
+          }
         >
         </Box>
         <Box className={classes.coverEdit} style={{ curser: "pointer" }}>
-          Edit Cover Photo
-          <FiEdit />
+          Edit Cover Photo{" "}
           <input
             style={{ curser: "pointer" }}
             type="file"
             accept="image/*"
             onChange={(e) => {
+              setcover(URL.createObjectURL(e.target.files[0]));
               getBase64(e.target.files[0], (result) => {
                 setcover(result);
               });
@@ -327,75 +266,77 @@ if(!name || !bio || !speciality || !profilePic ){
           />
         </Box>
       </Grid>
-      <Container maxWidth="sm">
+      <Container maxWidth="xl">
         <Box className={classes.profile}>
-          <Box className={classes.profilePic}
-            style={!profilePic ? {
-                border: "dotted 2px red"
-              }: null}
-          >
-            <img
-            
-            src={profilePic || "/images/users/profilepic1.svg"}
-            alt="Edit profile picture"
+          <img
+            className={classes.profilepic}
+            src={profile ? profile : "/images/users/profilepic1.svg"}
+            alt=""
           />
-            <Box style={{position: 'absolute',bottom:'44px',left:"126px", width:"200px", color: '#fff'}}>
-            <FiEdit /> Edit profile Picture
+          <Box className={classes.profileFoto} style={{ curser: "pointer" }}>
+            Edit profile photo{" "}
             <input
               type="file"
               accept="image/*"
               onChange={(e) => {
+                setprofile(URL.createObjectURL(e.target.files[0]));
                 getBase64(e.target.files[0], (result) => {
-                  setProfilePic(result);
+                  setprofile(result);
                 });
               }}
             />
-            </Box>
-            
           </Box>
         </Box>
-
-        {needVerification.length > 0 && <VerificationAlert verify={needVerification} />} 
-       
         <Box>
           <Grid container spacing={1}>
-            <Grid item xs={12} md={3}>
-              <label>Name</label>
+            <Grid item xs={12} md={1}>
+              <label className={classes.name}>Name</label>
             </Grid>
-            <Grid item xs={12} md={9}>
+            <Grid item xs={12} md={4}>
               <TextField
-                
+                id="standard-basic"
                 value={name}
-                error={!name}
-                helperText={!name && "Please enter valid name"}
+                error={validname}
+                helperText={validname ? "Please enter valid name" : ""}
                 onChange={(e) => setname(e.target.value)}
                 className={classes.input_fild2}
               />
+              {nameError && (
+                <p style={{ margin: "0px", color: "red", fontSize: "12px" }}>
+                  {" "}
+                  You can only enter 20 charachters.
+                </p>
+              )}
             </Grid>
           </Grid>
         </Box>
         <Box>
           <Grid container spacing={1}>
-            <Grid item xs={12} md={3}>
-              <label>Speciality</label>
+            <Grid item xs={12} md={1}>
+              <label className={classes.name}>Speciality</label>
             </Grid>
-            <Grid item xs={12} md={9}>
+            <Grid item xs={12} md={4}>
               <TextField
-                
+                id="standard-basic"
                 value={speciality}
-                //error={!speciality}
-               //helperText={!speciality && "Please enter valid speciality"}
+                error={validspeciality}
+                helperText={validspeciality ? "Please enter valid speciality" : ""}
                 onChange={(e) => setspeciality(e.target.value)}
-                className={classes.input_fild2}                
+                className={classes.input_fild2}
               />
-              
+              {nameError && (
+                <p style={{ margin: "0px", color: "red", fontSize: "12px" }}>
+                  {" "}
+                  You can only enter 20 charachters.
+                </p>
+              )}
             </Grid>
           </Grid>
         </Box>
         <Box>
           <Grid container spacing={1} style={{ alignItems: "center" }}>
           <Grid item xs={12} >
-              <label>About me</label>
+              <label className={classes.name}>About me</label>
             </Grid>
             <Grid item xs={12} >
               <TextField
@@ -404,146 +345,140 @@ if(!name || !bio || !speciality || !profilePic ){
                 multiline
                 rows={4}
                 value={bio}
-                //error={!bio}
-                //helperText={!bio && "Please Fill in something about you"}
+                error={validbio}
+                helperText={validbio ? "Please Fill in something about you" : ""}
                 variant="outlined"
-               className={classes.inputbox}
+                className={classes.inputbox}
                 onChange={(e) => setbio(e.target.value)}
               />
             </Grid>
           </Grid>
         </Box>
-        <Box mt={4}>
-          <Grid container spacing={2} 
-                direction="row"
-                justifyContent="center"
-                alignItems="center">
-            <Grid item xs={12} md={4}>
-              <label>Email</label>
+        <Box style={{ marginTop: "-10px" }}>
+          <Grid container spacing={1}>
+            <Grid item xs={12} md={1}>
+              <label className={classes.name}>Email</label>
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={4}>
               <TextField
+                id="standard-basic"
                 disabled={true}
-                fullWidth
-                variant="outlined"
-                margin="normal"
-                value={user.userData?.email}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      {user.userData?.emailVerification ? <CheckCircleOutlineIcon fontSize="16" style={{ color: green[500] }} /> :
-                      <Tooltip title="Email not verified" placement="right">
-                      <ErrorOutlineIcon fontSize="16" style={{ color: red[500] }} />
-                      </Tooltip>}
-                    </InputAdornment>
-                  )}}
+                value={user.userData.email}
+                className={classes.input_fild2}
               />
             </Grid>
           </Grid>
         </Box>
 
-        <Box>
-          <Grid container spacing={2} 
-                direction="row"
-                justifyContent="center"
-                alignItems="center">
-            <Grid item xs={12} md={4}>
-              <label>Phone Number</label>
-            </Grid>
-            <Grid item xs={12} md={8}>
-              <TextField
-                disabled={true}
-                fullWidth
-                variant="outlined"
-                margin="normal"
-                value={user.userData?.phone}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      {user.userData?.phoneVerification ? <CheckCircleOutlineIcon fontSize="16" style={{ color: green[500] }} /> :
-                      <Tooltip title="Phone number not verified" placement="right">
-                      <ErrorOutlineIcon fontSize="16" style={{ color: red[500] }} />
-                      </Tooltip>}
-                    </InputAdornment>
-                  )}}
-              />
+        <Box style={{ marginTop: "-23px" }}>
+          <Grid container spacing={1}>
+            <Grid item xs={12} md={6}>
+              <label className={classes.name}>
+                Public Profile URL
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <p>https://masplatform.net/user-profile?{user?.userData.userName}</p> &nbsp;
+                
+                  <CopyToClipboard
+                    style={{ curser: "pointer" }}
+                    text={`https://masplatform.net/user-profile?${user.userData.userName}`}
+                  >
+                    <FiCopy onClick={() => toast.info("Copied")} />
+                  </CopyToClipboard>
+              </label>
             </Grid>
           </Grid>
         </Box>
-
-        <Box>
-          <Grid container spacing={2} 
-                direction="row"
-                justifyContent="center"
-                alignItems="center">
-            <Grid item xs={12} md={4}>
-            <label>Profile URL</label>
-            </Grid>
-            <Grid item xs={12} md={8} >
-              <span style={{fontSize: "12px", color: "blue"}}>
-                https://masplatform.net/user-profile/{user?.userData?.userName}
-              </span>  &nbsp;
-              <CopyToClipboard
-                style={{ curser: "pointer" }}
-                text={`https://masplatform.net/user-profile/${user.userData?.userName}`}
+        <Box style={{ marginLeft: "5px", marginTop: "-10px" }}>
+          <Grid container spacing={1}>
+            {user && user.userData && user?.userData?.ethAccount?.address && (
+              <Typography
+                variant="h6"
+                style={{ marginBottom: "-20px" }}
+                className={classes.newsec}
               >
-                <FiCopy onClick={() => toast.info("Profile url Copied")} />
-              </CopyToClipboard>
-            </Grid>
+                <span style={{ fontSize: "20px", color: "#141518" }}>
+                  Address
+                </span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Box style={{ display: "flex" }}>
+                  <Box
+                    className={classes.mainadd}
+                    style={{
+                      fontSize: "14px",
+                      width: "200px",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {user.userData.ethAccount.address} &nbsp;
+                  </Box>{" "}
+                  <Box
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <CopyToClipboard
+                      style={{ curser: "pointer" }}
+                      text={user.userData.ethAccount.address}
+                    >
+                      <FiCopy onClick={() => toast.info("Copied")} />
+                    </CopyToClipboard>
+                  </Box>
+                </Box>
+              </Typography>
+            )}
           </Grid>
         </Box>
-        <Box>
-          <Grid container spacing={2} 
-                direction="row"
-                justifyContent="center"
-                alignItems="center">
-          <Grid item xs={12} md={4}>
-            <label>Wallet Address</label>
-            </Grid>
-            <Grid item xs={12} md={8} >
-              <span style={{fontSize: "12px", color: "blue"}}>
-                {user.userData?.ethAccount?.address}
-              </span> &nbsp;
-              <CopyToClipboard
-                style={{ curser: "pointer" }}
-                text={user.userData?.ethAccount?.address}
-              >
-                <FiCopy onClick={() => toast.info("Wallet Copied")} />
-              </CopyToClipboard>
-            </Grid>
-            
-          </Grid>
-        </Box>
-        <Box>
-          <Grid container alignItems="center">
-          <Grid item xs={12} md={4}> 
-            <label>Referral</label>
-            </Grid>
-            <Grid item xs={12} md={4} 
-            >
-                <span style={{fontSize: "12px", color: "blue"}}>{user.userData?.referralCode}</span>
-                &nbsp;
+        <Box style={{ marginTop: "40px", marginLeft: "5px" }}>
+          <Grid container spacing={1}>
+            {user.userData?.referralCode && (
+              <Typography variant="h6">
+                <span style={{ fontSize: "20px", color: "#141518" }}>
+                  Referral
+                </span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {user.userData?.referralCode} &nbsp;
                 <CopyToClipboard text={user.userData?.referralCode}>
-                  <FiCopy onClick={() => toast.info("Referral Code Copied")} />
+                  <FiCopy onClick={() => toast.info("Copied")} />
                 </CopyToClipboard>
-            </Grid>
-            
+              </Typography>
+            )}
           </Grid>
-        </Box>
-        <Box>
-          <SocialAccounts />
         </Box>
        
         <Box>
-          
+          <Grid container spacing={1} style={{ alignItems: "center" }}>
+            <Grid item xs={12} md={6}>
+              <Box
+                style={{
+                  width: "fit-content",
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                }}
+              >
+                <Typography
+                  variant="h4"
+                  className={classes.name}
+                  onClick={sociallink}
+                >
+                  Social Link
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
               <Box className={classes.Button}>
                 <Box className={classes.ButtonBtn}>
                   <Button
                     variant="contained"
                     size="large"
-                    color="primary"
+                    color="primery"
+                    className="btn-block btnWidth removeredius"
                     component={Link}
-                    to="/"
+                    to="/home"
                     disabled={isLoading}
                   >
                     Cancel
@@ -552,18 +487,23 @@ if(!name || !bio || !speciality || !profilePic ){
 
                 <Box className={classes.ButtonBtn}>
                   <Button
+                    // variant="h6"
                     variant="contained"
                     size="large"
                     color="secondary"
+                    className="btn-block btnWidth removeredius"
                     disabled={isLoading}
-                    onClick={updateProfile}
+                    // component={Link}
+                    // to="/profile"
+                    onClick={apply}
                   >
                     {isLoading ? "Updating..." : "Update"}
                     {isLoading && <ButtonCircularProgress />}
                   </Button>
                 </Box>
               </Box>
-            
+            </Grid>
+          </Grid>
         </Box>
       </Container>
     </Box>
