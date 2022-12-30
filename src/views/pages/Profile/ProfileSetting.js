@@ -166,7 +166,7 @@ export function copyTextById(id) {
 const VerificationAlert = ({verify}) => {
  const user = useContext(UserContext);
 
-  const [verifyOTPOpen, setVerifyOTPOpen] = useState(true);
+  const [verifyOTPOpen, setVerifyOTPOpen] = useState(false);
   return (
     <box>
     <Alert severity="warning" variant="outlined">
@@ -191,7 +191,7 @@ const VerificationAlert = ({verify}) => {
       emailVerificationSent={false}
       smsVerificationSent={false}
       successCallback={()=>{
-      setVerifyOTPOpen(false);
+      setVerifyOTPOpen(true);
         user.updateUserData();
        toast.success("Security Verification complete!");
      }}
