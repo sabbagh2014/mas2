@@ -118,8 +118,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    width: "1020px",
-    height: "1020px",
+    width: "120px",
+    height: "120px",
     borderRadius: "50%",
     "& img": {
       width: "124px",
