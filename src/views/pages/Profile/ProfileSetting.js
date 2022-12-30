@@ -166,7 +166,7 @@ export function copyTextById(id) {
 const VerificationAlert = ({verify}) => {
  const user = useContext(UserContext);
 
-  const [verifyOTPOpen, setVerifyOTPOpen] = useState(false);
+  const [verifyOTPOpen, setVerifyOTPOpen] = useState(true);
   return (
     <box>
     <Alert severity="warning" variant="outlined">
