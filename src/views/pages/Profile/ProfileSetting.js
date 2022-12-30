@@ -175,7 +175,7 @@ const VerificationAlert = ({verify}) => {
        {' '}
        {verify.includes('email') && 'your email address '}
        {verify.length>1 && ' and '}
-       {verify.includes('sms') && 'your phone number '} 
+      
        <Button 
       variant="text"
      onClick={()=>setVerifyOTPOpen(true)}
@@ -189,7 +189,7 @@ const VerificationAlert = ({verify}) => {
       channels={verify}
       context={'verifyLater'}
       emailVerificationSent={false}
-      smsVerificationSent={true}
+      smsVerificationSent={false}
       successCallback={()=>{
       setVerifyOTPOpen(false);
         user.updateUserData();
