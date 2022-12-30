@@ -175,8 +175,8 @@ const VerificationAlert = ({verify}) => {
        {' '}
        {verify.includes('email') && 'your email address '}
        {verify.length>1 && ' and '}
-      
-       <Button 
+       {verify.includes('sms') && 'your phone number '}        
+  <Button 
       variant="text"
      onClick={()=>setVerifyOTPOpen(true)}
       >
