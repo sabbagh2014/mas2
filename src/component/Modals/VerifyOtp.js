@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -21,25 +20,27 @@ import ButtonCircularProgress from "src/component/ButtonCircularProgress";
 export const VerifyOtp = ({ 
   open, 
   handleClose, 
-  channels=['email'], 
+  channels=['email', 'sms'], 
   context, 
   payload={},
   emailVerificationSent=true,
-  //smsVerificationSent=true,
+  smsVerificationSent=true,
   successCallback
 }) => {
 
   const [emailResendTimer, setemailResendTimer] = useState(emailVerificationSent && 60);
-  //const [smsResendTimer, setsmsResendTimer] = useState(smsVerificationSent && 60);
+  const [smsResendTimer, setsmsResendTimer] = useState(smsVerificationSent && 60);
   const [code, setCode] = useState({
-    email:""
+    email:"",
+    sms: ""
   });
   const [validatecode, setvalidatecode] = useState({
-    email:""
+    email:"",
+    sms: ""
   });
 
   const [emailVerified, setEmailVerified] = useState(channels.includes('email') ? false : null);
-  //const [phoneVerified, setPhoneVerified] = useState(channels.includes('sms') ? false : null);
+  const [phoneVerified, setPhoneVerified] = useState(channels.includes('sms') ? false : null);
   
   const [loader, setloader] = useState(false);
 
@@ -51,7 +52,7 @@ export const VerifyOtp = ({
     setloader(true);
     for (const channel of channels) {
       if(channel === 'email' && emailVerified) return true;
-      //if(channel === 'sms' && phoneVerified) return true;
+      if(channel === 'sms' && phoneVerified) return true;
       if (code[channel].length != 6){
           setvalidatecode({...validatecode, [channel]: 'Please enter a 6-digit verification code.' });
           setloader(false);
@@ -114,6 +115,7 @@ export const VerifyOtp = ({
       if (res.data.statusCode === 200) {
         setloader(false);
         channel === 'email' && setemailResendTimer(60);
+        channel === 'sms' && setsmsResendTimer(60);
         toast.success(res.data.responseMessage);
       } else {
         toast.error(res.data.responseMessage);
@@ -140,15 +142,15 @@ export const VerifyOtp = ({
       }
   });
 
-  //useEffect(() => {
-    //let smstimeout;
-    //if (smsResendTimer && smsResendTimer >= 0) {
-     // smstimeout = setTimeout(() => setsmsResendTimer(smsResendTimer - 1), 1000);
-    //} else {
-     // setsmsResendTimer();
-     // clearTimeout(smstimeout);
-   // }
-//});
+  useEffect(() => {
+    let smstimeout;
+    if (smsResendTimer && smsResendTimer >= 0) {
+      smstimeout = setTimeout(() => setsmsResendTimer(smsResendTimer - 1), 1000);
+    } else {
+      setsmsResendTimer();
+      clearTimeout(smstimeout);
+    }
+});
 
     return (
             <Dialog
