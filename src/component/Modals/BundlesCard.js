@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
         color: "#000",
         paddingLeft: "5px",
       },
-      "@media(max-width:500px)": {
+      "@media(max-width:821px)": {
         fontSize: "11px !important",
       },
     },
@@ -495,7 +495,7 @@ export default function UsersCard({
                 alignItems: "center",
               }}
             >
-              <video width="400" controls>
+              <video width="200" controls>
                 <source src={data.mediaUrl} type="video/mp4" />
               </video>
             </Box>
