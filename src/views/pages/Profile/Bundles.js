@@ -323,7 +323,7 @@ export const AddBundlePopup = ({ open, handleClose, callbackFun }) => {
       <DialogContent>
         <Box>
           <Grid container spacing={2}>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} md={4}>
               <label> Bundles Title </label>
             </Grid>
             <Grid item xs={12} md={8}>
