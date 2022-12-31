@@ -445,6 +445,12 @@ export const AddBundlePopup = ({ open, handleClose, callbackFun }) => {
             </Grid>
             <Grid item xs={12} md={8} className={classes.donation}>
               <span
+                className={duration === "1 Day" ? "active" : null}
+                onClick={() => setDuration("1 Day")}
+              >
+                1 Day
+              </span>
+              <span
                 className={duration === "7 Days" ? "active" : null}
                 onClick={() => setDuration("7 Days")}
               >
@@ -464,15 +470,9 @@ export const AddBundlePopup = ({ open, handleClose, callbackFun }) => {
               </span>
               <span
                 className={duration === "60 Days" ? "active" : null}
-                onClick={() => setDuration("60 Days")}
+                onClick={() => setDuration("60 days")}
               >
-                60 Days
-              </span>
-              <span
-                className={duration === "1 Year" ? "active" : null}
-                onClick={() => setDuration("1 Year")}
-              >
-                1 Year
+                60 days
               </span>
             </Grid>
           </Grid>
