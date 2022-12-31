@@ -192,7 +192,7 @@ const AuctionPage = () => {
   return (
 
     <>
-      <Container  maxWidth='100%' style={{ paddingBottom: "30px", marginTop: "50px", 
+      <Container   style={{ paddingBottom: "30px", marginTop: "50px", 
           backgroundClor: '#D9AFD9',
           backgroundImage: 'linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%)'}}>
         <div id="creators_section" className={classes.sectionHeading}>
