@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
         color: "#000",
         paddingLeft: "5px",
       },
-      "@media(max-width:821px)": {
+      "@media(max-width:500px)": {
         fontSize: "11px !important",
       },
     },
