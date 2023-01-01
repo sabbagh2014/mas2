@@ -495,7 +495,7 @@ export default function UsersCard({
                 alignItems: "center",
               }}
             >
-              <video width="400%" controls>
+              <video width="100%" controls>
                 <source src={data.mediaUrl} type="video/mp4" />
               </video>
             </Box>
