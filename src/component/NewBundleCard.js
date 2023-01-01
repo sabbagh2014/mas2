@@ -218,12 +218,12 @@ export default function BundleCard({ data }) {
         }
         action={
           <IconButton aria-label="settings">
-          <SettingsIcon />
           <MoreVertIcon />
           </IconButton>
         }
    title={BundleData.bundleName}
-        subheader={new Date(BundleData.createdAt).toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"})}      />     
+        subheader={new Date(BundleData.createdAt).toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"})}
+        />     
      <CardMedia
         className={classes.media}
         image={BundleData.mediaUrl}
