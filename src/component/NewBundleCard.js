@@ -204,8 +204,21 @@ export default function BundleCard({ data }) {
 
   return (
     <Card className={classes.root}>
-      
-      <CardMedia
+      <CardHeader
+        avatar={
+          <Avatar 
+            aria-label="user" 
+            alt={userName} 
+            src={profilePic} 
+            className={classes.avatar}
+            onClick={() => {
+              navigate("/user-profile/"+userName)
+            }}
+          />
+        }
+        
+      />     
+     <CardMedia
         className={classes.media}
         image={BundleData.mediaUrl}
         title={BundleData.bundleName}
