@@ -326,7 +326,7 @@ export const AddBundlePopup = ({ open, handleClose, callbackFun }) => {
             <Grid item xs={12} md={4}>
               <label> Bundles Title </label>
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={4}>
               <TextField
                 id="standard-basic"
                 placeholder="Bundles 1"
