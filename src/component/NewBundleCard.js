@@ -217,7 +217,8 @@ export default function BundleCard({ data }) {
           />
         }
         
-      />     
+        title={BundleData.bundleName}
+        subheader={new Date(BundleData.createdAt).toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"})}      />     
      <CardMedia
         className={classes.media}
         image={BundleData.mediaUrl}
