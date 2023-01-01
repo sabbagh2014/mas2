@@ -497,6 +497,35 @@ export default function ProfileSettings() {
             </Grid>
             <Grid item xs={12} md={4} 
             >
+              <Box>
+          <Grid container spacing={2} 
+                direction="row"
+                justifyContent="center"
+                alignItems="center">
+            <Grid item xs={12} md={4}>
+              <label>Phone Number</label>
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <TextField
+                disabled={true}
+                fullWidth
+                variant="outlined"
+                margin="normal"
+                value={user.userData?.phone}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      {user.userData?.phoneVerification ? <CheckCircleOutlineIcon fontSize="16" style={{ color: green[500] }} /> :
+                      <Tooltip title="Phone number not verified" placement="right">
+                      <ErrorOutlineIcon fontSize="16" style={{ color: red[500] }} />
+                      </Tooltip>}
+                    </InputAdornment>
+                  )}}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+
                 <span style={{fontSize: "12px", color: "blue"}}>{user.userData?.referralCode}</span>
                 &nbsp;
                 <CopyToClipboard text={user.userData?.referralCode}>
