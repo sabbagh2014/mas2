@@ -218,7 +218,7 @@ export default function BundleCard({ data }) {
         }
         action={
           <IconButton aria-label="settings">
-          <SettingsIcon remove={true} />
+          <SettingsIcon />
           <MoreVertIcon />
           </IconButton>
         }
