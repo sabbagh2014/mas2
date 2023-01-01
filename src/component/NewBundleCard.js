@@ -217,9 +217,9 @@ export default function BundleCard({ data }) {
           />
         }
         action={
-          <IconButton aria-label="settings"
+          <IconButton aria-label="settings"> 
           onClick={() => {
-              navigate("/user-profile/"+userName)>
+              navigate("/user-profile/"+userName)
           <MoreVertIcon />
           </IconButton>
         }
