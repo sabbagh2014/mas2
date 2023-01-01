@@ -174,8 +174,8 @@ const VerificationAlert = ({verify}) => {
        To secure your account and enjoy full MAS Platform features please verify
        {' '}
        {verify.includes('email') && 'your email address '}
-       {verify.length>1 && ' and '}
-       {verify.includes('sms') && 'your phone number '}        
+       //{verify.length>1 && ' and '}
+       //{verify.includes('sms') && 'your phone number '}        
   <Button 
       variant="text"
      onClick={()=>setVerifyOTPOpen(true)}
@@ -189,7 +189,7 @@ const VerificationAlert = ({verify}) => {
       channels={verify}
       context={'verifyLater'}
       emailVerificationSent={false}
-      smsVerificationSent={false}
+      //smsVerificationSent={false}
       successCallback={()=>{
       setVerifyOTPOpen(true);
         user.updateUserData();
@@ -446,35 +446,7 @@ export default function ProfileSettings() {
           </Grid>
         </Box>
 
-        <Box>
-          <Grid container spacing={2} 
-                direction="row"
-                justifyContent="center"
-                alignItems="center">
-            <Grid item xs={12} md={4}>
-              <label>Phone Number</label>
-            </Grid>
-            <Grid item xs={12} md={8}>
-              <TextField
-                disabled={true}
-                fullWidth
-                variant="outlined"
-                margin="normal"
-                value={user.userData?.phone}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      {user.userData?.phoneVerification ? <CheckCircleOutlineIcon fontSize="16" style={{ color: green[500] }} /> :
-                      <Tooltip title="Phone number not verified" placement="right">
-                      <ErrorOutlineIcon fontSize="16" style={{ color: red[500] }} />
-                      </Tooltip>}
-                    </InputAdornment>
-                  )}}
-              />
-            </Grid>
-          </Grid>
-        </Box>
-
+        
         <Box>
           <Grid container spacing={2} 
                 direction="row"
