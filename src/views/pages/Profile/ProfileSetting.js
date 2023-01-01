@@ -164,7 +164,7 @@ export function copyTextById(id) {
 }
 
 const VerificationAlert = ({verify}) => {
- const user = useContext(UserContext);
+  const user = useContext(UserContext);
 
   const [verifyOTPOpen, setVerifyOTPOpen] = useState(false);
   return (
@@ -174,12 +174,12 @@ const VerificationAlert = ({verify}) => {
        To secure your account and enjoy full MAS Platform features please verify
        {' '}
        {verify.includes('email') && 'your email address '}
-       //{verify.length>1 && ' and '}
-       //{verify.includes('sms') && 'your phone number '}        
-  <Button 
+       {verify.length>1 && ' and '}
+       {verify.includes('sms') && 'your phone number '} 
+       <Button 
       variant="text"
-     onClick={()=>setVerifyOTPOpen(true)}
-      >
+      onClick={()=>setVerifyOTPOpen(true)}
+       >
         check here!
       </Button>
     </Alert>
@@ -189,13 +189,13 @@ const VerificationAlert = ({verify}) => {
       channels={verify}
       context={'verifyLater'}
       emailVerificationSent={false}
-      //smsVerificationSent={false}
+      smsVerificationSent={false}
       successCallback={()=>{
-      setVerifyOTPOpen(true);
+        setVerifyOTPOpen(false);
         user.updateUserData();
-       toast.success("Security Verification complete!");
-     }}
-   />
+        toast.success("Security Verification complete!");
+      }}
+    />
     </box>
   )
 }
@@ -225,7 +225,7 @@ export default function ProfileSettings() {
 
   const updateProfile = async () => {
 
-      if(!name || bio || speciality || !profilePic ){
+      if(!name || !bio || !speciality || !profilePic ){
         toast.error("Check field Errors !");
       } else { 
         
@@ -446,7 +446,35 @@ export default function ProfileSettings() {
           </Grid>
         </Box>
 
-        
+        <Box>
+          <Grid container spacing={2} 
+                direction="row"
+                justifyContent="center"
+                alignItems="center">
+            <Grid item xs={12} md={4}>
+              <label>Phone Number</label>
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <TextField
+                disabled={true}
+                fullWidth
+                variant="outlined"
+                margin="normal"
+                value={user.userData?.phone}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      {user.userData?.phoneVerification ? <CheckCircleOutlineIcon fontSize="16" style={{ color: green[500] }} /> :
+                      <Tooltip title="Phone number not verified" placement="right">
+                      <ErrorOutlineIcon fontSize="16" style={{ color: red[500] }} />
+                      </Tooltip>}
+                    </InputAdornment>
+                  )}}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+
         <Box>
           <Grid container spacing={2} 
                 direction="row"
@@ -497,35 +525,6 @@ export default function ProfileSettings() {
             </Grid>
             <Grid item xs={12} md={4} 
             >
-              <Box>
-          <Grid container spacing={2} 
-                direction="row"
-                justifyContent="center"
-                alignItems="center">
-            <Grid item xs={12} md={4}>
-              <label>Phone Number</label>
-            </Grid>
-            <Grid item xs={12} md={8}>
-              <TextField
-                disabled={true}
-                fullWidth
-                variant="outlined"
-                margin="normal"
-                value={user.userData?.phone}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      {user.userData?.phoneVerification ? <CheckCircleOutlineIcon fontSize="16" style={{ color: green[500] }} /> :
-                      <Tooltip title="Phone number not verified" placement="right">
-                      <ErrorOutlineIcon fontSize="16" style={{ color: red[500] }} />
-                      </Tooltip>}
-                    </InputAdornment>
-                  )}}
-              />
-            </Grid>
-          </Grid>
-        </Box>
-
                 <span style={{fontSize: "12px", color: "blue"}}>{user.userData?.referralCode}</span>
                 &nbsp;
                 <CopyToClipboard text={user.userData?.referralCode}>
