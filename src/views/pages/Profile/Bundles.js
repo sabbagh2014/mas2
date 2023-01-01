@@ -445,7 +445,7 @@ export const AddBundlePopup = ({ open, handleClose, callbackFun }) => {
             </Grid>
             <Grid item xs={12} md={8} className={classes.donation}>
               <span
-                className={duration === "1 Hour" ? "active" : null}
+                className={duration === "1 Hour" ? "active" : true}
                 onClick={() => setDuration("1 Hour")}
               >
                 1 Hour
