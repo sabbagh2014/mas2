@@ -218,7 +218,7 @@ export default function BundleCard({ data }) {
         }
         action={
           <IconButton aria-label="settings"> 
-          <MoreVertIcon />
+          <MoreVertIcon deleteOne={true}/>
           </IconButton>
         }
    title={BundleData.bundleName}
