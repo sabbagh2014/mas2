@@ -326,7 +326,7 @@ export const AddBundlePopup = ({ open, handleClose, callbackFun }) => {
             <Grid item xs={12} md={4}>
               <label> Bundles Title </label>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={8}>
               <TextField
                 id="standard-basic"
                 placeholder="Bundles 1"
@@ -445,10 +445,10 @@ export const AddBundlePopup = ({ open, handleClose, callbackFun }) => {
             </Grid>
             <Grid item xs={12} md={8} className={classes.donation}>
               <span
-                className={duration === "1 Day" ? "active" : null}
-                onClick={() => setDuration("1 Day")}
+                className={duration === "1 Hour" ? "active" : null}
+                onClick={() => setDuration("1 Hour")}
               >
-                1 Day
+                1 Hour
               </span>
               <span
                 className={duration === "7 Days" ? "active" : null}
@@ -481,7 +481,7 @@ export const AddBundlePopup = ({ open, handleClose, callbackFun }) => {
         <Box mb={2}>
           <Grid container spacing={0}>
             <Grid item xs={12} md={12}>
-              <label>Upload a photo or video:</label>
+              <label>Upload a photo or video</label>
             </Grid>
             <Grid item xs={12} md={12}>
               <Box className={classes.UploadBox}>
