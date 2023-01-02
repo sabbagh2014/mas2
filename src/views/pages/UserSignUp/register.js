@@ -243,13 +243,13 @@ export default function SignUp() {
                 onBlur={(e)=>setemailvalid(isValidEmail(e.target.value))}
               />
             </Box>
-            <Box>
-              <label className={classes.labelText}>
-                Phone number
+            //<Box>
+             // <label className={classes.labelText}>
+                //Phone number
               </label>
-              <MuiTelInput 
-              defaultCountry="US"
-              disableFormatting 
+              //<MuiTelInput 
+              //defaultCountry="US"
+              //disableFormatting 
               //required
               //error={!phonevalid}
               //helperText={!phonevalid && "Please enter valid phone number"}
@@ -262,8 +262,8 @@ export default function SignUp() {
                 //setphonevalid(phone =="" || isValidPhoneNumber(e));
              // }}
               //onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
-              />
-            </Box>
+             ///>
+            //</Box>
 
             <Box>
               <label className={classes.labelText}>Password</label>
@@ -330,7 +330,7 @@ export default function SignUp() {
                 onClick={() => {
                   if (validateAll()) setTermsPopUp(true);
                 }}
-                disabled={loader || !uservalid || !emailvalid || !phonevalid || !passvalid}
+                disabled={loader || !uservalid || !emailvalid || phonevalid || !passvalid}
               >
                 Sign up {loader && <ButtonCircularProgress />}
               </Button>
