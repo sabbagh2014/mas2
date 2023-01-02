@@ -498,20 +498,7 @@ export default function SignUp() {
             </DialogContentText>
           </DialogContent>
         </Dialog>
-      <VerifyOtp
-        keepMounted
-        open={verifyOTPOpen} 
-        handleClose={()=> setVerifyOTPOpen(false)}
-        channels={['email']}
-        context={'register'}
-        emailVerificationSent={emailVerificationSent}
-        smsVerificationSent={smsVerificationSent}
-        successCallback={async ()=> {
-          setVerifyOTPOpen(false);
-          await user.updateUserData();
-          navigate('/profilesettings')
-        }}
-      />
+      
       </Container>
 
     </Box>
