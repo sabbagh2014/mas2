@@ -251,8 +251,8 @@ export default function SignUp() {
               defaultCountry="US"
               disableFormatting 
               required
-              error={!phonevalid}
-              helperText={!phonevalid && "Please enter valid phone number"}
+              //error={!phonevalid}
+              //helperText={!phonevalid && "Please enter valid phone number"}
               value={phone}
               className={classes.inputText}
               variant="outlined"
@@ -330,7 +330,7 @@ export default function SignUp() {
                 onClick={() => {
                   if (validateAll()) setTermsPopUp(true);
                 }}
-                disabled={loader || !uservalid || !emailvalid || !phonevalid || !passvalid}
+                disabled={loader || !uservalid || !emailvalid || phonevalid || !passvalid}
               >
                 Sign up {loader && <ButtonCircularProgress />}
               </Button>
