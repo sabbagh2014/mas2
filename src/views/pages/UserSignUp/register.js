@@ -310,7 +310,7 @@ export default function SignUp() {
                 onClick={() => {
                   if (validateAll()) setTermsPopUp(true);
                 }}
-                disabled={loader || !uservalid || !emailvalid ||!passvalid}
+                disabled={loader || !uservalid || !emailvalid ||!phonevalid ||!passvalid}
               >
                 Sign up {loader && <ButtonCircularProgress />}
               </Button>
