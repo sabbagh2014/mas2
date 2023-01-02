@@ -257,13 +257,13 @@ export default function SignUp() {
               className={classes.inputText}
               variant="outlined"
               type="tel"
-             /onChange={(e) => {
+              onChange={(e) => {
                 setphone(e);
                 setphonevalid(phone =="" || isValidPhoneNumber(e));
-            }}
+              }}
               onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
-             />
-           </Box>
+              />
+            </Box>
 
             <Box>
               <label className={classes.labelText}>Password</label>
