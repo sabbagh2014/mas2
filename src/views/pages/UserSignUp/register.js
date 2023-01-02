@@ -7,15 +7,13 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
+import { isValidPhoneNumber } from "react-phone-number-input";
 import { MuiTelInput } from 'mui-tel-input'
 import IconButton from "@material-ui/core/IconButton";
 import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import {
-  isValidPassword,
-  isValidEmail,
-} from "src/CommanFunction/Validation";
+import {isValidPassword,isValidEmail} from "src/CommanFunction/Validation";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
@@ -107,9 +105,11 @@ export default function SignUp() {
   
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
+  const [phone, setphone] = useState("");
   const [pass, setpass] = useState("");
   const [uservalid, setuservalid] = useState(true);
   const [emailvalid, setemailvalid] = useState(true);
+  const [phonevalid, setphonevalid] = useState(true);
   const [passvalid, setpassvalid] = useState(true);
 
   const [show, setshow] = useState(false);
@@ -126,18 +126,18 @@ export default function SignUp() {
   });
 
   const [emailVerificationSent, setEmailVerificationSent] = useState(false);
- 
+  const [smsVerificationSent, setSmsVerificationSent] = useState(false);
 
   const validateAll = () => {
-    setuservalid(username.length > 1);
+    setuservalid(username.length > 2);
     setemailvalid(isValidEmail(email));
-    
+    setphonevalid(phone =="" || isValidPhoneNumber(phone));
     setpassvalid(isValidPassword(pass));
-    return (username.length > 1) && isValidEmail(email);
+    return (username.length > 2) && isValidEmail(email) && (phone =="" || isValidPhoneNumber(phone)) && isValidPassword(pass);
   }
 
   const signup = async () => {
-    if (user.userLoggedIn && (emailVerificationSent)) {
+    if (user.userLoggedIn && (emailVerificationSent || smsVerificationSent)) {
       setTermsPopUp(false);
       setVerifyOTPOpen(true);
       return;
@@ -155,6 +155,7 @@ export default function SignUp() {
         userName: username,
         password: pass,
         email: email,
+        phone: phone,
         referralCode,
       },
     }).then(async (res) => {
@@ -163,7 +164,7 @@ export default function SignUp() {
           setTermsPopUp(false);
           await user.updateUserData();
           setEmailVerificationSent(res.data.result.email_verification_sent)
-          
+          setSmsVerificationSent(res.data.result.sms_verification_sent)
           
           setVerifyOTPOpen(true);
           setloader(false);
@@ -242,7 +243,28 @@ export default function SignUp() {
                 onBlur={(e)=>setemailvalid(isValidEmail(e.target.value))}
               />
             </Box>
-            
+            <Box>
+              <label className={classes.labelText}>
+                Phone number
+              </label>
+              <MuiTelInput 
+              defaultCountry="US"
+              disableFormatting 
+              required
+              error={!phonevalid}
+              helperText={!phonevalid && "Please enter valid phone number"}
+              value={phone}
+              className={classes.inputText}
+              variant="outlined"
+              type="tel"
+              onChange={(e) => {
+                setphone(e);
+                setphonevalid(phone =="" || isValidPhoneNumber(e));
+              }}
+              onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
+              />
+            </Box>
+
             <Box>
               <label className={classes.labelText}>Password</label>
               <TextField
@@ -444,7 +466,7 @@ export default function SignUp() {
                     />
                   }
                 />
-                <label>Read and agree to all</label>
+                <label>Read and agree to all.</label>
               </Box>
               
               <Box mt={2} mb={5} pb={3} className={classes.btnBox}>
@@ -483,7 +505,7 @@ export default function SignUp() {
         channels={['email']}
         context={'register'}
         emailVerificationSent={emailVerificationSent}
-        //smsVerificationSent={smsVerificationSent}
+        smsVerificationSent={smsVerificationSent}
         successCallback={async ()=> {
           setVerifyOTPOpen(false);
           await user.updateUserData();
