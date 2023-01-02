@@ -1,24 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   Box,
   Container,
   Button,
   TextField,
   makeStyles,
-  Grid,
   Typography,
 } from "@material-ui/core";
+import { isValidPhoneNumber } from "react-phone-number-input";
+import { MuiTelInput } from 'mui-tel-input'
 import IconButton from "@material-ui/core/IconButton";
-import { Link, useHistory } from "react-router-dom";
-import Dialog from "@material-ui/core/Dialog";
+import { Link, useNavigate } from "react-router-dom";
+
 import axios from "axios";
-import {
-  isName,
-  isValidationEmail,
-  isValidPassword,
-  isValidName,
-} from "src/CommanFunction/Validation";
-// import { UserContext } from "src/context/User";
+import {isValidPassword,isValidEmail} from "src/CommanFunction/Validation";
+import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -28,110 +24,100 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Apiconfigs from "src/Apiconfig/Apiconfigs.js";
-import MuiAlert from "@material-ui/lab/Alert";
 import ButtonCircularProgress from "src/component/ButtonCircularProgress";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import { toast } from "react-toastify";
+import {VerifyOtp} from "src/component/Modals/VerifyOtp"
+import {isMobile} from 'react-device-detect';
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 const useStyles = makeStyles((theme) => ({
-  LoginBox: {
-    display: "flex",
-    padding: "10px 0px",
-  },
-  connectBox: {
-    display: "flex",
-    justifyContent: " center",
-    alignItems: "center",
-    height: "60vh",
-    "& h5": {
-      fontSize: "20px",
-      fontWeight: "500",
-      color: "#000",
-    },
-    "& button": {
-      height: "54.5px",
-      width: "237.5px",
-    },
-  },
-  modaltitel: {
-    fontSize: "30px",
-    fontWeight: "600",
-    marginBottom: "10px",
-    textAlign: "center",
-    borderBottom: "solid 1px #e5e3dd",
-    paddingBottom: "10px",
-    color: "#141518",
+
+  root:{
+    display: 'flex',
+    flexDirection: isMobile ? 'column' : 'row',
     [theme.breakpoints.down("sm")]: {
-      fontSize: "20px",
+      flexDirection: "column",
     },
   },
-  form: {
-    display: "flex",
-    justifyContent: "center",
-    // alignItems: "center",
-  },
-  input_fild2: {
-    width: "100%",
-    "& input": {
-      // height: "45px",
-    },
-  },
-  btnflex: {
-    display: "flex",
-    justifyContent: "flex-end",
+  loginBox: {
+    width: isMobile ? '100%' : '50vw',
     [theme.breakpoints.down("sm")]: {
-      justifyContent: "center",
+      width: "100%",
+    },
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#e5e5f7",
+  },
+
+  splash: {
+    width: isMobile ? '100%' : '50vw',
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
     },
   },
-  labeltext: {
-    fontSize: "20px",
+
+  labelText: {
+    fontSize: "14px",
     fontWeight: "500",
     color: "#000",
-    // padding: "0.9em 0em 0.2em",
-    marginBottom: "-8px",
+  },
+  inputText: {
+    width: "100%",
+    "& .MuiOutlinedInput-root":{
+      border: "solid 1px #4441",
+      borderRadius: "20px",
+      backgroundColor: "#fafafa",
+    },
+    "& .MuiOutlinedInput-input": {
+      padding: '10px',
+      fontSize: "14px",
+      fontWeight: "500",
+      color: "#000",
+    }
   },
   paper: {
     display: "flex",
     alignItems: "center",
-    marginLeft: 10,
     "& a": {
       fontWeight: "700",
       textDecoration: "underline",
+      fontSize: "13px",
       color: "#000",
+      marginLeft: "4px"
     },
     "& label": {
       paddingTop: "0 !important",
       color: "#141518",
+      fontSize: "13px",
     },
   },
 }));
 
-export default function Login() {
+export default function SignUp() {
   const classes = useStyles();
+  const navigate = useNavigate();
   const user = useContext(UserContext);
-  const [pass, setpass] = React.useState("");
-  const [confirmpass, setConfirmpass] = React.useState("");
-  const history = useHistory();
-  const [username, setusername] = React.useState("");
-  const [email, setemail] = React.useState("");
-  const [uservalid, setuservalid] = React.useState(false);
-  const [emailvalid, setemailvalid] = React.useState(false);
-  const [passvalid, setpassvalid] = React.useState(false);
+
+  const [splash, setSplash] = useState("");
+  
+  
+  const [username, setusername] = useState("");
+  const [email, setemail] = useState("");
+  const [phone, setphone] = useState("");
+  const [pass, setpass] = useState("");
+  const [uservalid, setuservalid] = useState(true);
+  const [emailvalid, setemailvalid] = useState(true);
+  const [phonevalid, setphonevalid] = useState(true);
+  const [passvalid, setpassvalid] = useState(true);
+
   const [show, setshow] = useState(false);
-  const [confirmpassvalid, setconfirmpassvalid] = React.useState(false);
-  const [severity, setSeverity] = useState("error");
-  const [confirmshow, setconfirmshow] = useState(false);
   const [verifyOTPOpen, setVerifyOTPOpen] = useState(false);
-  const [userOTP, setUserOTP] = useState("");
   const [loader, setloader] = useState(false);
-  const [termsPopUp, setTermsPopUp] = React.useState(false);
-  const [minuteTimer, setMinuteTimer] = useState();
+  const [termsPopUp, setTermsPopUp] = useState(false);
   const [referralCode, setReferralCode] = useState("");
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     all: false,
     termsCond: false,
     privacyPolicy: true,
@@ -139,49 +125,28 @@ export default function Login() {
     kycProgram: true,
   });
 
-  React.useEffect(() => {
-    document
-      .getElementById("clicking")
-      .addEventListener("keydown", function (event) {
-        if (event.keyCode === 13) {
-          document.getElementById("cli").click();
-        }
-      });
-  }, []);
+  const [emailVerificationSent, setEmailVerificationSent] = useState(false);
+  const [smsVerificationSent, setSmsVerificationSent] = useState(false);
+
+  const validateAll = () => {
+    setuservalid(username.length > 2);
+    setemailvalid(isValidEmail(email));
+    setphonevalid(phone =="" || isValidPhoneNumber(phone));
+    setpassvalid(isValidPassword(pass));
+    return (username.length > 2) && isValidEmail(email) && (phone =="" || isValidPhoneNumber(phone)) && isValidPassword(pass);
+  }
 
   const signup = async () => {
-    setSeverity("error");
-    if (username === "" || isValidName(username) === false) {
-      setuservalid(true);
+    if (user.userLoggedIn && (emailVerificationSent || smsVerificationSent)) {
+      setTermsPopUp(false);
+      setVerifyOTPOpen(true);
       return;
-    } else {
-      setuservalid(false);
     }
-
-    if (email === "" || isValidationEmail(email) === false) {
-      setemailvalid(true);
+    if (!validateAll()){
+      setTermsPopUp(false);
+      setVerifyOTPOpen(false);
       return;
-    } else {
-      setemailvalid(false);
-    }
-
-    if (pass === "" || isValidPassword(pass) == false) {
-      setpassvalid(true);
-      return;
-    } else {
-      setpassvalid(false);
-    }
-    if (confirmpass === "" || confirmpass !== pass) {
-      setconfirmpassvalid(true);
-      return;
-    } else {
-      setconfirmpassvalid(false);
-    }
-    user.updateUserStateData({
-      username: username,
-      useremail: email,
-    });
-    console.log("hello");
+    } 
     setloader(true);
     await axios({
       method: "POST",
@@ -190,22 +155,24 @@ export default function Login() {
         userName: username,
         password: pass,
         email: email,
-        otp: userOTP,
+        phone: phone,
         referralCode,
       },
-    })
-      .then(async (res) => {
+    }).then(async (res) => {
         if (res.data.statusCode === 200) {
-          console.log(res);
           user.updatetoken(res.data.result.token);
-          history.push("/profilesettings");
+          setTermsPopUp(false);
+          await user.updateUserData();
+          setEmailVerificationSent(res.data.result.email_verification_sent)
+          setSmsVerificationSent(res.data.result.sms_verification_sent)
+          
+          setVerifyOTPOpen(true);
           setloader(false);
         } else {
           toast.error(res.data.responseMessage);
           setloader(false);
         }
-      })
-      .catch((error) => {
+    }).catch((error) => {
         console.log(error.message);
         if (error.response) {
           toast.error(error.response.data.responseMessage);
@@ -213,154 +180,101 @@ export default function Login() {
           toast.error(error.message);
         }
         setloader(false);
-      });
+    });
   };
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: !state[event.target.name] });
   };
   const { termsCond, privacyPolicy, riskStatment, kycProgram, all } = state;
-  const sendOTPHandler = async () => {
-    setSeverity("error");
-    setTermsPopUp(false);
-    if (username === "" || !isName(username)) {
-      setuservalid(true);
-      return;
-    } else {
-      setuservalid(false);
-    }
 
-    if (email === "" || isValidationEmail(email) === false) {
-      setemailvalid(true);
-      return;
-    } else {
-      setemailvalid(false);
-    }
+  useEffect(()=>{
+    const url = 'https://api.unsplash.com/photos/random?client_id=YC94t2S3Nge47lJvxYFndgORX0JUr4Ym7BfrSqfHUzU'
+    const fetchSplash = async () => axios.get(url).then(res => {
+      console.log(res)
+      setSplash(res.data.urls.regular)
+    });
+    fetchSplash();
+  
+  },[])
 
-    if (pass === "" || isValidPassword(pass) == false) {
-      setpassvalid(true);
-      return;
-    } else {
-      setpassvalid(false);
-    }
-    if (confirmpass === "" || confirmpass !== pass) {
-      setconfirmpassvalid(true);
-      return;
-    } else {
-      setconfirmpassvalid(false);
-    }
-    try {
-      setloader(true);
-
-      const res = await axios.put(Apiconfigs.emailOtp, {
-        email: email,
-        userName: username,
-      });
-      if (res.data.statusCode === 200) {
-        console.log(res);
-        // signup()
-        setSeverity("info");
-        setloader(false);
-        setVerifyOTPOpen(true);
-        setMinuteTimer(60);
-        toast.success(res.data.responseMessage);
-      } else {
-        toast.error(res.data.responseMessage);
-      }
-      setloader(false);
-    } catch (error) {
-      console.log(error.message);
-      if (error.response) {
-        toast.error(error.response.data.responseMessage);
-      } else {
-        toast.error(error.message);
-      }
-      setloader(false);
-    }
-  };
-
-  React.useEffect(() => {
-    if (verifyOTPOpen) {
-      let timeout;
-      if (minuteTimer && minuteTimer >= 0) {
-        timeout = setTimeout(() => setMinuteTimer(minuteTimer - 1), 1000);
-      } else {
-        setMinuteTimer();
-        clearTimeout(timeout);
-      }
-    }
-  });
   return (
-    <Box className={classes.LoginBox}>
-      <Box className="leftimg">
-        <div className="span1"></div>
-        <div className="span2"></div>
-        <div className="span3"></div>
-      </Box>
-      <Box className="rightimg">
-        <div className="span1"></div>
-        <div className="span2"></div>
-        <div className="span3"></div>
-      </Box>
-      <img
-        onClick={() => history.push("/")}
-        src="images/centerimg.png"
-        className="centerimg"
-      />
-      <Container maxWidth="lg">
-        <Typography variant="h3" className={classes.modaltitel}>
+    <Box className={classes.root}>
+    
+    <Box className={classes.loginBox}>
+    
+      <Container maxWidth="sm" style={{backgroundColor: "#e5e5f7f8",padding:'20px'}}>
+        <Typography variant="h2"  align='center'>
           Create your account
         </Typography>
-
-        <Grid container className={classes.form}>
-          <Grid item xs={12} md={8}>
+        
             <Box>
-              <label className={classes.labeltext}>Username</label>
+              <label className={classes.labelText}>Username</label>
               <TextField
+                variant="outlined"
                 required
-                id="standard-basic"
-                placeholder={username}
-                error={uservalid}
-                helperText={uservalid ? "Please enter username" : ""}
-                className={classes.input_fild2}
-                onChange={(e) => setusername(e.target.value)}
+                value={username}
+                error={!uservalid}
+                helperText={!uservalid && "Please enter username" }
+                className={classes.inputText}
+                onChange={(e) => {
+                  setusername(e.target.value);
+                  setuservalid(e.target.value.length > 2);
+                }}
+                onBlur={(e)=>setuservalid(e.target.value.length > 2)}
               />
             </Box>
             <Box>
-              <label className={classes.labeltext}>
-                Enter Your Email Address
+              <label className={classes.labelText}>
+                Email
               </label>
               <TextField
+                variant="outlined"
                 required
-                id="standard-basic"
-                error={emailvalid}
-                placeholder={email}
-                className={classes.input_fild2}
+                error={!emailvalid}
+                helperText={!emailvalid && "Please enter valid email address"}
+                value={email}
+                className={classes.inputText}
                 type="email"
-                helperText={emailvalid ? "Plese enter valid email address" : ""}
-                onChange={(e) => setemail(e.target.value)}
+                onChange={(e) => {
+                  setemail(e.target.value);
+                  setemailvalid(isValidEmail(e.target.value));
+                }}
+                onBlur={(e)=>setemailvalid(isValidEmail(e.target.value))}
+              />
+            </Box>
+            <Box>
+              <label className={classes.labelText}>
+                Phone number
+              </label>
+              <MuiTelInput 
+              defaultCountry="US"
+              disableFormatting 
+              required
+              error={!phonevalid}
+              helperText={!phonevalid && "Please enter valid phone number"}
+              value={phone}
+              className={classes.inputText}
+              variant="outlined"
+              type="tel"
+              onChange={(e) => {
+                setphone(e);
+                setphonevalid(phone =="" || isValidPhoneNumber(e));
+              }}
+              onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
               />
             </Box>
 
             <Box>
-              <label className={classes.labeltext}>Your Password</label>
+              <label className={classes.labelText}>Password</label>
               <TextField
-                // id="standard-basic"
-                id="clicking"
-                // onFocus={(e) => (e.target.placeholder = "")}
-                // onBlur={(e) =>
-                //   (e.target.placeholder =
-                //     "0x93c3a3cd2463963787391532d06859684bbc2fa2")
-                // }
+                variant="outlined"
                 type={show ? "text" : "password"}
-                error={passvalid}
+                error={!passvalid}
                 helperText={
-                  passvalid
-                    ? "Password must contain at least 8 characters, one uppercase, one number and one special case character"
-                    : ""
+                  !passvalid && "Password must contain at least 8 characters, one uppercase, one number and one special case character"
                 }
                 InputProps={{
-                  // <-- This is where the toggle button is added.
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
@@ -372,85 +286,60 @@ export default function Login() {
                     </InputAdornment>
                   ),
                 }}
-                onChange={(e) => setpass(e.target.value)}
-                className={classes.input_fild2}
-              />
-            </Box>
-            <Box>
-              <label className={classes.labeltext}>Confirm Password</label>
-              <TextField
-                id="standard-basic"
-                // onFocus={(e) => (e.target.placeholder = "")}
-                // onBlur={(e) =>
-                //   (e.target.placeholder =
-                //     "0x93c3a3cd2463963787391532d06859684bbc2fa2")
-                // }
-                type={confirmshow ? "text" : "password"}
-                error={confirmpassvalid}
-                helperText={
-                  confirmpassvalid
-                    ? "Password didn't matched, Please check"
-                    : ""
-                }
-                InputProps={{
-                  // <-- This is where the toggle button is added.
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={() => setconfirmshow(!confirmshow)}
-                      >
-                        {confirmshow ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
+                onChange={(e) => {
+                  setpass(e.target.value);
+                  setpassvalid(isValidPassword(e.target.value));
                 }}
-                onChange={(e) => setConfirmpass(e.target.value)}
-                className={classes.input_fild2}
+                onBlur={()=>setpassvalid(isValidPassword(pass))}
+                className={classes.inputText}
               />
             </Box>
+           
             <Box>
-              <label className={classes.labeltext}>Referral Code</label>
+              <label className={classes.labelText}>Referral Code</label>
               <TextField
+                variant="outlined"
                 placeholder="Referral Code (optional)"
-                className={classes.input_fild2}
+                className={classes.inputText}
                 name="Referral"
                 onChange={(e) => setReferralCode(e.target.value)}
               />
             </Box>
-            <Box className={classes.btnflex} mt={5}>
+            <Box display='flex' justifyContent="space-around" mt={5}>
+              <Box align="center">
+              <Typography variant="body2" >
+                Already have an account ?
+              </Typography>
               <Button
                 variant="contained"
                 size="large"
                 color="primary"
-                className="widthsame ml-10"
-                //   component={Link}
-                //   to="/profilesettings"
-                id="cli"
-                onClick={() => history.goBack()}
+                onClick={() => navigate("/login")}
               >
-                Back
+                Sign in here
               </Button>
+              </Box>
+              <Box align="center">
+              <Typography variant="body2" >
+                Continue
+              </Typography>
               <Button
                 variant="contained"
                 size="large"
                 color="secondary"
-                className="widthsame ml-10"
-                //   component={Link}
-                //   to="/profilesettings"
-                id="cli"
-                onClick={() => setTermsPopUp(true)}
-                disabled={loader}
+                onClick={() => {
+                  if (validateAll()) setTermsPopUp(true);
+                }}
+                disabled={loader || !uservalid || !emailvalid || !phonevalid || !passvalid}
               >
                 Sign up {loader && <ButtonCircularProgress />}
               </Button>
+              </Box>
             </Box>
-          </Grid>
-        </Grid>
+          
         <Dialog
           open={termsPopUp}
           keepMounted
-          fullWidth="sm"
           maxWidth="sm"
           onClose={() => setTermsPopUp(false)}
           aria-labelledby="alert-dialog-slide-title"
@@ -458,12 +347,10 @@ export default function Login() {
         >
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-              <img src="images/centerimg.png" className="centerimg" />
-
               <Box>
                 <Typography
-                  variant="h6"
-                  style={{ color: "#792034", marginBottom: "10px" }}
+                  variant="h4"
+                  style={{ color: "#792034", marginBottom: "10px", textAlign: 'center' }}
                 >
                   Last step to create your account
                 </Typography>
@@ -474,7 +361,7 @@ export default function Login() {
                   style={{ fontSize: "14px" }}
                 >
                   Before creating your account, you should agree to our terms
-                  and conditions, privacy policy and risk disclosure statements.{" "}
+                  and conditions, privacy policy and risk disclosure statements.
                 </Typography>
               </Box>
               <Box className={classes.paper} mt={4}>
@@ -488,7 +375,7 @@ export default function Login() {
                   }
                 />
                 <label>
-                  I have read and agree to{" "}
+                  I have read and agree to
                   <Link target="_blank" to="/terms-conditions">
                     Terms and Conditions
                   </Link>
@@ -506,7 +393,7 @@ export default function Login() {
                   }
                 />
                 <label>
-                  I have read and agree to{" "}
+                  I have read and agree to
                   <Link target="_blank" to="/privacy-policy">
                     Privacy Policy
                   </Link>
@@ -524,7 +411,7 @@ export default function Login() {
                   }
                 />
                 <label>
-                  I have read and agree to{" "}
+                  I have read and agree to
                   <Link target="_blank" to="/risk-statment">
                     Risk disclosure statement
                   </Link>
@@ -542,7 +429,7 @@ export default function Login() {
                   }
                 />
                 <label>
-                  I have read and agree to{" "}
+                  I have read and agree to
                   <Link target="_blank" to="/kyc-program">
                     KYC program
                   </Link>
@@ -581,25 +468,19 @@ export default function Login() {
                 />
                 <label>Read and agree to all.</label>
               </Box>
-              {(!state.termsCond ||
-                !state.privacyPolicy ||
-                !state.riskStatment ||
-                !state.kycProgram) && (
-                <Box>
-                  <Typography style={{ color: "red" }}>
-                    Please select checkbox
-                  </Typography>
-                </Box>
-              )}
+              
               <Box mt={2} mb={5} pb={3} className={classes.btnBox}>
                 <Button
                   variant="contained"
                   size="large"
                   color="secondary"
-                  className="btn-block "
-                  //   component={Link}
-                  //   to="/home"
-                  disabled={loader}
+                  disabled={
+                    loader ||
+                    !state.termsCond ||
+                    !state.privacyPolicy ||
+                    !state.riskStatment ||
+                    !state.kycProgram
+                  }
                   onClick={() => {
                     if (
                       state.termsCond &&
@@ -607,63 +488,55 @@ export default function Login() {
                       state.riskStatment &&
                       state.kycProgram
                     ) {
-                      sendOTPHandler();
+                      signup();
                     }
                   }}
                 >
-                  Continue{loader && <ButtonCircularProgress />}
+                  Continue {loader && <ButtonCircularProgress />}
                 </Button>
               </Box>
             </DialogContentText>
           </DialogContent>
         </Dialog>
+      <VerifyOtp
+        keepMounted
+        open={verifyOTPOpen} 
+        handleClose={()=> setVerifyOTPOpen(false)}
+        channels={['email']}
+        context={'register'}
+        emailVerificationSent={emailVerificationSent}
+        smsVerificationSent={smsVerificationSent}
+        successCallback={async ()=> {
+          setVerifyOTPOpen(false);
+          await user.updateUserData();
+          navigate('/profilesettings')
+        }}
+      />
       </Container>
 
-      {verifyOTPOpen && (
-        <Dialog
-          fullWidth
-          maxWidth="sm"
-          open={verifyOTPOpen}
-          onClose={() => setVerifyOTPOpen(false)}
-        >
-          <DialogTitle>Verify OTP</DialogTitle>
-          <DialogContent>
-            <Typography>
-              Please enter OTP sent on your registered email address {email}
-            </Typography>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Please enter OTP"
-              fullWidth
-              variant="standard"
-              inputProps={{ maxLength: 4 }}
-              value={userOTP}
-              onChange={(e) => setUserOTP(e.target.value)}
-            />
-            <Box
-              mt={3}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-            >
-              {" "}
-              <Button onClick={() => sendOTPHandler()} disabled={minuteTimer}>
-                {" "}
-                Resend OTP{" "}
-              </Button>{" "}
-              {minuteTimer && `in ${minuteTimer}s`}
-            </Box>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setVerifyOTPOpen(false)}>Cancel</Button>
-            <Button disabled={loader} onClick={() => signup()}>
-              Submit {loader && <ButtonCircularProgress />}
-            </Button>
-          </DialogActions>
-        </Dialog>
-      )}
+    </Box>
+    
+    <Box className={classes.splash}
+        style={{
+          padding:"20px",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          flex: 1,
+          backgroundSize: 'cover',
+          backgroundImage: `url(${splash})`
+        }}
+      >
+        <Link to='/'>
+          <img src="/images/footer-logo.svg" alt="home page" width="200" />
+        </Link>
+        <Typography variant="h1" style={{ color: "#fffc", fontSize: '5rem', fontWeight: 'bold' }}>
+          Unleash your creativity
+        </Typography>
+
+
+      </Box>
+    
     </Box>
   );
 }
