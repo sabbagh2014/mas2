@@ -129,18 +129,18 @@ export default function SignUp() {
   });
 
   const [emailVerificationSent, setEmailVerificationSent] = useState(false);
-  //const [smsVerificationSent, setSmsVerificationSent] = useState(false);
+ 
 
   const validateAll = () => {
     setuservalid(username.length > 2);
     setemailvalid(isValidEmail(email));
-    //setphonevalid(phone =="" || isValidPhoneNumber(phone));
+    
     setpassvalid(isValidPassword(pass));
     return (username.length > 2) && isValidEmail(email) && (phone =="" || isValidPhoneNumber(phone)) && isValidPassword(pass);
   }
 
   const signup = async () => {
-    if (user.userLoggedIn && (emailVerificationSent || //smsVerificationSent)) {
+    if (user.userLoggedIn && (emailVerificationSent)) {
       setTermsPopUp(false);
       setVerifyOTPOpen(true);
       return;
@@ -167,7 +167,7 @@ export default function SignUp() {
           setTermsPopUp(false);
           await user.updateUserData();
           setEmailVerificationSent(res.data.result.email_verification_sent)
-          //setSmsVerificationSent(res.data.result.sms_verification_sent)
+          
           
           setVerifyOTPOpen(true);
           setloader(false);
