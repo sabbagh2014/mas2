@@ -7,7 +7,6 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-//import { isValidPhoneNumber } from "react-phone-number-input";
 import { MuiTelInput } from 'mui-tel-input'
 import IconButton from "@material-ui/core/IconButton";
 import { Link, useNavigate } from "react-router-dom";
@@ -108,11 +107,9 @@ export default function SignUp() {
   
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
-  //const [phone, setphone] = useState("");
   const [pass, setpass] = useState("");
   const [uservalid, setuservalid] = useState(true);
   const [emailvalid, setemailvalid] = useState(true);
-  //const [phonevalid, setphonevalid] = useState(true);
   const [passvalid, setpassvalid] = useState(true);
 
   const [show, setshow] = useState(false);
@@ -132,11 +129,11 @@ export default function SignUp() {
  
 
   const validateAll = () => {
-    setuservalid(username.length > 2);
+    setuservalid(username.length > 1);
     setemailvalid(isValidEmail(email));
     
     setpassvalid(isValidPassword(pass));
-    return (username.length > 2) && isValidEmail(email);
+    return (username.length > 1) && isValidEmail(email);
   }
 
   const signup = async () => {
@@ -158,7 +155,6 @@ export default function SignUp() {
         userName: username,
         password: pass,
         email: email,
-        //phone: phone,
         referralCode,
       },
     }).then(async (res) => {
