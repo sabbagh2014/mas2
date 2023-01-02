@@ -520,7 +520,20 @@ export default function SignUp() {
         <Typography variant="h1" style={{ color: "#fffc", fontSize: '5rem', fontWeight: 'bold' }}>
           Unleash your creativity
         </Typography>
-
+       <VerifyOtp
+        keepMounted
+        open={verifyOTPOpen} 
+        handleClose={()=> setVerifyOTPOpen(false)}
+        channels={['email']}
+        context={'register'}
+        emailVerificationSent={emailVerificationSent}
+        smsVerificationSent={smsVerificationSent}
+        successCallback={async ()=> {
+          setVerifyOTPOpen(false);
+          await user.updateUserData();
+          navigate('/profilesettings')
+        }}
+      />
 
       </Box>
     
