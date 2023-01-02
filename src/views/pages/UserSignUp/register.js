@@ -244,9 +244,9 @@ export default function SignUp() {
               />
             </Box>
             //<Box>
-             // <label className={classes.labelText}>
+              //<label className={classes.labelText}>
                 //Phone number
-              </label>
+              //</label>
               //<MuiTelInput 
               //defaultCountry="US"
               //disableFormatting 
