@@ -250,14 +250,14 @@ export default function SignUp() {
               <MuiTelInput 
               defaultCountry="US"
               disableFormatting 
-              required
+              //required
               //error={!phonevalid}
               //helperText={!phonevalid && "Please enter valid phone number"}
               value={phone}
               className={classes.inputText}
               variant="outlined"
               type="tel"
-              //onChange={(e) => {
+              onChange={(e) => {
                 setphone(e);
                 setphonevalid(phone =="" || isValidPhoneNumber(e));
               }}
@@ -330,7 +330,7 @@ export default function SignUp() {
                 onClick={() => {
                   if (validateAll()) setTermsPopUp(true);
                 }}
-                disabled={loader || !uservalid || !emailvalid || phonevalid || !passvalid}
+                disabled={loader || !uservalid || !emailvalid || !phonevalid || !passvalid}
               >
                 Sign up {loader && <ButtonCircularProgress />}
               </Button>
