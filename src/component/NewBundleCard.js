@@ -212,7 +212,8 @@ export default function BundleCard({ data }) {
             className={classes.avatar}
             onClick={() => {navigate("/user-profile/"+userName)}}/>}
        action={
-          <IconButton aria-label="settings"> 
+          <IconButton aria-label="settings">
+         <MoreVertIcon />
           </IconButton>
         }
 title={BundleData.bundleName}
