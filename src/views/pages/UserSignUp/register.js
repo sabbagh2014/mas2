@@ -129,15 +129,15 @@ export default function SignUp() {
   const [smsVerificationSent, setSmsVerificationSent] = useState(false);
 
   const validateAll = () => {
-    setuservalid(username.length > 1);
+    setuservalid(username.length > 2);
     setemailvalid(isValidEmail(email));
-    setphonevalid(phone =="" || isValidPhoneNumber(phone));
+    //setphonevalid(phone =="" || isValidPhoneNumber(phone));
     setpassvalid(isValidPassword(pass));
-    return (username.length > 1) && isValidEmail(email) && (phone =="" || isValidPhoneNumber(phone)) && isValidPassword(pass);
+    return (username.length > 2) && isValidEmail(email) && isValidPassword(pass);
   }
 
   const signup = async () => {
-    if (user.userLoggedIn && (emailVerificationSent || smsVerificationSent)) {
+    if (user.userLoggedIn && (emailVerificationSent)) {
       setTermsPopUp(false);
       setVerifyOTPOpen(true);
       return;
@@ -155,7 +155,7 @@ export default function SignUp() {
         userName: username,
         password: pass,
         email: email,
-        phone: phone,
+  
         referralCode,
       },
     }).then(async (res) => {
@@ -243,27 +243,7 @@ export default function SignUp() {
                 onBlur={(e)=>setemailvalid(isValidEmail(e.target.value))}
               />
             </Box>
-            <Box>
-              <label className={classes.labelText}>
-                Phone number
-              </label>
-              <MuiTelInput 
-              defaultCountry="US"
-              disableFormatting 
-              required
-              error={!phonevalid}
-              helperText={!phonevalid && "Please enter valid phone number"}
-              value={phone}
-              className={classes.inputText}
-              variant="outlined"
-              type="tel"
-              onChange={(e) => {
-                setphone(e);
-                setphonevalid(phone =="" || isValidPhoneNumber(e));
-              }}
-              onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
-              />
-            </Box>
+           
             <Box>
               <label className={classes.labelText}>Password</label>
               <TextField
