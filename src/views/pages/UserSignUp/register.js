@@ -126,7 +126,7 @@ export default function SignUp() {
   });
 
   const [emailVerificationSent, setEmailVerificationSent] = useState(false);
-  //const [smsVerificationSent, setSmsVerificationSent] = useState(false);
+  const [smsVerificationSent, setSmsVerificationSent] = useState(false);
 
   const validateAll = () => {
     setuservalid(username.length > 2);
@@ -155,7 +155,7 @@ export default function SignUp() {
         userName: username,
         password: pass,
         email: email,
-  
+  phone: ,
         referralCode,
       },
     }).then(async (res) => {
