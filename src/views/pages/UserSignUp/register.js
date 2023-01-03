@@ -253,7 +253,7 @@ export default function SignUp() {
               required
               error={!phonevalid}
               helperText={!phonevalid && "Please enter valid phone number"}
-              value={}
+              value={phone}
               className={classes.inputText}
               variant="outlined"
               type="tel"
