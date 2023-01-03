@@ -261,7 +261,7 @@ export default function SignUp() {
                 setphone(e);
                 setphonevalid(phone =="" || isValidPhoneNumber(e));
               }}
-              onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
+              //onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
               />
             </Box>
 
@@ -492,7 +492,7 @@ export default function SignUp() {
                     }
                   }}
                 >
-                  Continue {loader}
+                  Continue {loader && <ButtonCircularProgress />}
                 </Button>
               </Box>
             </DialogContentText>
