@@ -129,11 +129,11 @@ export default function SignUp() {
   const [smsVerificationSent, setSmsVerificationSent] = useState(false);
 
   const validateAll = () => {
-    setuservalid(username.length > 2);
+    setuservalid(username.length > 1);
     setemailvalid(isValidEmail(email));
     setphonevalid(phone =="" || isValidPhoneNumber(phone));
     setpassvalid(isValidPassword(pass));
-    return (username.length > 2) && isValidEmail(email) && (phone =="" || isValidPhoneNumber(phone)) && isValidPassword(pass);
+    return (username.length > 1) && isValidEmail(email) && (phone =="" || isValidPhoneNumber(phone)) && isValidPassword(pass);
   }
 
   const signup = async () => {
