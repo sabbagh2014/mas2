@@ -211,8 +211,11 @@ export default function BundleCard({ data }) {
             src={profilePic} 
             className={classes.avatar}
             onClick={() => {navigate("/user-profile/"+userName)}}/>}
-       
-   title={BundleData.bundleName}
+       action={
+          <IconButton aria-label="settings"> 
+          </IconButton>
+        }
+title={BundleData.bundleName}
         subheader={new Date(BundleData.createdAt).toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"})}
         />     
      <CardMedia
