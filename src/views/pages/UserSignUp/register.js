@@ -259,9 +259,9 @@ export default function SignUp() {
               type="tel"
               onChange={(e) => {
                 setphone(e);
-                setphonevalid(phone =="" || isValidPhoneNumber(e));
+                //setphonevalid(phone =="" || isValidPhoneNumber(e));
               }}
-              //onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
+              onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber())}
               />
             </Box>
 
