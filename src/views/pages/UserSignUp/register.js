@@ -261,7 +261,7 @@ export default function SignUp() {
                 setphone(e);
                 setphonevalid(phone =="" || isValidPhoneNumber(e));
               }}
-              onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber())}
+              onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
               />
             </Box>
 
