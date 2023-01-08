@@ -168,35 +168,7 @@ const VerificationAlert = ({verify}) => {
 
   const [verifyOTPOpen, setVerifyOTPOpen] = useState(false);
   return (
-    <box>
-    <Alert severity="warning" variant="outlined">
-      <AlertTitle>Security Verification</AlertTitle>
-       To secure your account and enjoy full MAS Platform features please verify
-       {' '}
-       {verify.includes('email') && 'your email address '}
-       {verify.length>1 && ' and '}
-       {verify.includes('sms') && 'your phone number '} 
-       <Button 
-      variant="text"
-      onClick={()=>setVerifyOTPOpen(true)}
-       >
-        check here!
-      </Button>
-    </Alert>
-    <VerifyOtp 
-      open={verifyOTPOpen} 
-      handleClose={()=> setVerifyOTPOpen(false)}
-      channels={verify}
-      context={'verifyLater'}
-      emailVerificationSent={false}
-      smsVerificationSent={false}
-      successCallback={()=>{
-        setVerifyOTPOpen(false);
-        user.updateUserData();
-        toast.success("Security Verification complete!");
-      }}
-    />
-    </box>
+   
   )
 }
 
