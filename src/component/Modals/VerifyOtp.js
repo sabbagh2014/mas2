@@ -152,7 +152,7 @@ export const VerifyOtp = ({
     }
 });
 
-    return (
+    return 
             
                 <CloseIcon />
                 </IconButton>
