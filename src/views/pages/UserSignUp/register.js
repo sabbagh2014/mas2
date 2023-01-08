@@ -137,7 +137,7 @@ export default function SignUp() {
   }
 
   const signup = async () => {
-    if (user.userLoggedIn && (emailVerificationSent || smsVerificationSent)) {
+    if (user.userLoggedIn && (emailVerificationSent )) {
       setTermsPopUp(false);
       setVerifyOTPOpen(true);
       return;
