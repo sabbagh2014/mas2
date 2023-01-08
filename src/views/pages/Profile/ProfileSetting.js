@@ -167,8 +167,23 @@ const VerificationAlert = ({verify}) => {
   const user = useContext(UserContext);
 
   const [verifyOTPOpen, setVerifyOTPOpen] = useState(false);
-  return (
+  return ( 
+   <box>
    
+    <VerifyOtp 
+      open={verifyOTPOpen} 
+      handleClose={()=> setVerifyOTPOpen(false)}
+      channels={verify}
+      context={'verifyLater'}
+      emailVerificationSent={false}
+      smsVerificationSent={false}
+      successCallback={()=>{
+        setVerifyOTPOpen(false);
+        user.updateUserData();
+        toast.success("Security Verification complete!");
+      }}
+    />
+    </box>   
   )
 }
 
