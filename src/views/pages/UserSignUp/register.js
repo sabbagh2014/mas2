@@ -137,7 +137,7 @@ export default function SignUp() {
   }
 
   const signup = async () => {
-    if (user.userLoggedIn && (emailVerificationSent )) {
+    if (user.userLoggedIn && (emailVerificationSent || smsVerificationSent)) {
       setTermsPopUp(false);
       setVerifyOTPOpen(true);
       return;
@@ -186,7 +186,7 @@ export default function SignUp() {
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: !state[event.target.name] });
   };
-  const { termsCond, privacyPolicy, riskStatment, kycProgram, all } = state;
+  //const { termsCond, privacyPolicy, riskStatment, kycProgram, all } = state;
 
   useEffect(()=>{
     const url = 'https://api.unsplash.com/photos/random?client_id=YC94t2S3Nge47lJvxYFndgORX0JUr4Ym7BfrSqfHUzU'
