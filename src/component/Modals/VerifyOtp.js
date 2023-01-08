@@ -153,35 +153,7 @@ export const VerifyOtp = ({
 });
 
     return (
-            <Dialog
-              fullWidth
-              maxWidth="sm"
-              open={open}
-              onClose={() => handleClose}
-            >
-              <DialogTitle>
-                <Typography
-                    variant="h4"
-                    style={{ color: "#792034", marginBottom: "10px", textAlign: 'center' }}
-                  >
-                  Security verification
-                </Typography>
-                <Typography
-                    variant="body2"
-                    style={{ color: "#999", marginBottom: "10px", textAlign: 'center' }}
-                  >
-                To secure your account, please complete the following verification.
-                </Typography>
-                <IconButton
-                  aria-label="close"
-                  onClick={handleClose}
-                  style={{
-                    position: 'absolute',
-                    right: 8,
-                    top: 8,
-                    color: '#333',
-                  }}
-                >
+            
                 <CloseIcon />
                 </IconButton>
               </DialogTitle>
