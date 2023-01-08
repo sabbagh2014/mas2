@@ -243,27 +243,27 @@ export default function SignUp() {
                 onBlur={(e)=>setemailvalid(isValidEmail(e.target.value))}
               />
             </Box>
-            <Box>
-              <label className={classes.labelText}>
-                Phone number
-              </label>
-              <MuiTelInput 
-              defaultCountry="US"
-              disableFormatting 
-              required
-              error={!phonevalid}
-              helperText={!phonevalid && "Please enter valid phone number"}
-              value={phone}
-              className={classes.inputText}
-              variant="outlined"
-              type="tel"
-              onChange={(e) => {
-                setphone(e);
-                setphonevalid(phone =="" || isValidPhoneNumber(e));
-              }}
-              onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
-              />
-            </Box>
+            //<Box>
+              //<label className={classes.labelText}>
+                //Phone number
+              //</label>
+              //<MuiTelInput 
+              //defaultCountry="US"
+              //disableFormatting 
+              //required
+              //error={!phonevalid}
+              //helperText={!phonevalid && "Please enter valid phone number"}
+              //value={phone}
+              //className={classes.inputText}
+              //variant="outlined"
+              //type="tel"
+              //onChange={(e) => {
+                //setphone(e);
+                //setphonevalid(phone =="" || isValidPhoneNumber(e));
+              //}}
+              //onBlur={()=>setphonevalid(phone =="" || isValidPhoneNumber(phone))}
+              ///>
+            //</Box>
 
             <Box>
               <label className={classes.labelText}>Password</label>
