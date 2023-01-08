@@ -503,7 +503,6 @@ export default function SignUp() {
         open={verifyOTPOpen} 
         handleClose={()=> setVerifyOTPOpen(false)}
         channels={['email']}
-        channels={['phone']}
         context={'register'}
         emailVerificationSent={emailVerificationSent}
         smsVerificationSent={smsVerificationSent}
