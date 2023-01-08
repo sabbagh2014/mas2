@@ -376,7 +376,7 @@ export default function ProfileSettings() {
                 value={speciality}
                 //error={!speciality}
                 //helperText={!speciality && "Please enter valid speciality"}
-                onChange={(e) => setspeciality(e.target.value)}
+                //onChange={(e) => setspeciality(e.target.value)}
                 className={classes.input_fild2}
               />
               
@@ -399,7 +399,7 @@ export default function ProfileSettings() {
                 //helperText={!bio && "Please Fill in something about you"}
                 variant="outlined"
                 className={classes.inputbox}
-                onChange={(e) => setbio(e.target.value)}
+                //onChange={(e) => setbio(e.target.value)}
               />
             </Grid>
           </Grid>
