@@ -442,22 +442,7 @@ export default function ProfileSettings() {
               
             </Grid>
             <Grid item xs={12} md={8}>
-              <TextField
-                disabled={true}
-                fullWidth
-                variant="outlined"
-                margin="normal"
-                value={user.userData?.phone}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      {user.userData?.phoneVerification ? <CheckCircleOutlineIcon fontSize="16" style={{ color: green[500] }} /> :
-                      <Tooltip title="Phone number not verified" placement="right">
-                      <ErrorOutlineIcon fontSize="16" style={{ color: red[500] }} />
-                      </Tooltip>}
-                    </InputAdornment>
-                  )}}
-              />
+              
             </Grid>
           </Grid>
         </Box>
