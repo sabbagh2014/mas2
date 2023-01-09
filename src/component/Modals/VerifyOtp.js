@@ -195,16 +195,7 @@ export const VerifyOtp = ({
                     name="email"
                     disabled={emailVerified}
                     type="number"
-                    InputProps={{
-                      endAdornment: (
-                                 <InputAdornment position="end">
-                          {emailVerified ? <CheckCircleOutlineIcon fontSize="16" htmlColor="green" /> :
-                          
-                        </InputAdornment>
-                      
-                      ),
-                      maxLength: 6,
-                    }}
+                    
                     error={validatecode.email}
                     helperText={
                       validatecode.email ? validatecode.email :"Enter the 6-digit code sent to your email"
