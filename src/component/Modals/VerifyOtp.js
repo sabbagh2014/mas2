@@ -197,12 +197,7 @@ export const VerifyOtp = ({
                     type="number"
                     InputProps={{
                       endAdornment: (
-                        <InputAdornment position="end">
-                          {emailVerified ? <CheckCircleOutlineIcon fontSize="16" htmlColor="green" /> :
-                          <Button variant="text" onClick={() => sendOTPHandler('email')} disabled={emailResendTimer || loader}>
-                            {emailResendTimer ? `Resend in ${emailResendTimer}s`:'Get Code'}
-                          </Button>}
-                        </InputAdornment>
+                       
                       ),
                       maxLength: 6,
                     }}
