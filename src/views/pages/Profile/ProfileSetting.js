@@ -225,10 +225,10 @@ export default function ProfileSettings() {
           },
           data: {
             name: name,
-            speciality: speciality,
+            speciality: speciality.optional(),
             profilePic: profilePic,
             coverPic: cover,
-            bio: bio,
+            bio: bio.optional(),
             facebook: user.link.userfacebook,
             twitter: user.link.usertwitter,
             youtube: user.link.useryoutube,
