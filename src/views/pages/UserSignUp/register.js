@@ -472,7 +472,7 @@ export default function SignUp() {
                     }
                   }}
                 >
-                  Continue {loader && <ButtonCircularProgress />}
+                  Continue 
                 </Button>
               </Box>
             </DialogContentText>
