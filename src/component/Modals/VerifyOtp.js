@@ -197,7 +197,11 @@ export const VerifyOtp = ({
                     type="number"
                     InputProps={{
                       endAdornment: (
-                       
+                                 <InputAdornment position="end">
+                          {emailVerified ? <CheckCircleOutlineIcon fontSize="16" htmlColor="green" /> :
+                          
+                        </InputAdornment>
+                      
                       ),
                       maxLength: 6,
                     }}
