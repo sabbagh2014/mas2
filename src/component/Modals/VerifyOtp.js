@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -195,7 +194,17 @@ export const VerifyOtp = ({
                     name="email"
                     disabled={emailVerified}
                     type="number"
-                    
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          {emailVerified ? <CheckCircleOutlineIcon fontSize="16" htmlColor="green" /> :
+                          <Button variant="text" onClick={() => sendOTPHandler('email')} disabled={emailResendTimer || loader}>
+                            {emailResendTimer ? `Resend in ${emailResendTimer}s`:'Get Code'}
+                          </Button>}
+                        </InputAdornment>
+                      ),
+                      maxLength: 6,
+                    }}
                     error={validatecode.email}
                     helperText={
                       validatecode.email ? validatecode.email :"Enter the 6-digit code sent to your email"
@@ -236,7 +245,14 @@ export const VerifyOtp = ({
                   
               </DialogContent>
               <DialogActions>
-                {context === 'register'}
+                {context === 'register' && <Button
+                  variant="contained"
+                  size="large"
+                  color="primary"
+                  onClick={() => successCallback()}
+                >
+                  Do it later
+                </Button>}
                 <Button 
                 variant="contained"
                 color="secondary"
