@@ -163,7 +163,7 @@ export default function SignUp() {
           user.updatetoken(res.data.result.token);
           setTermsPopUp(false);
           await user.updateUserData();
-          setEmailVerificationSent(res.data.result.email_verification_sent)
+          //setEmailVerificationSent(res.data.result.email_verification_sent)
           setSmsVerificationSent(res.data.result.sms_verification_sent)
           
           setVerifyOTPOpen(true);
@@ -312,7 +312,7 @@ export default function SignUp() {
                 }}
                 disabled={loader || !uservalid || !emailvalid || !phonevalid || !passvalid}
               >
-                Sign up { <ButtonCircularProgress />}
+                Sign up {loader && <ButtonCircularProgress/>}
               </Button>
               </Box>
             </Box>
