@@ -286,7 +286,7 @@ export default function TransactionsList() {
       )}
         <Box mb={2} mt={2} display="flex" justifyContent="center">
           <Pagination
-            count={pages}
+            count={2}
             page={page}
             onChange={(e,v) => setPage(v)}
           />
