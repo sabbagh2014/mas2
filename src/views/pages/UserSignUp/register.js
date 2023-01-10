@@ -139,7 +139,7 @@ export default function SignUp() {
   const signup = async () => {
     if (user.userLoggedIn && (emailVerificationSent || smsVerificationSent)) {
       setTermsPopUp(false);
-      setVerifyOTPOpen(true);
+      setVerifyOTPOpen(false);
       return;
     }
     if (!validateAll()){
@@ -163,7 +163,7 @@ export default function SignUp() {
           user.updatetoken(res.data.result.token);
           setTermsPopUp(false);
           await user.updateUserData();
-          //setEmailVerificationSent(res.data.result.email_verification_sent)
+          setEmailVerificationSent(res.data.result.email_verification_sent)
           setSmsVerificationSent(res.data.result.sms_verification_sent)
           
           setVerifyOTPOpen(true);
