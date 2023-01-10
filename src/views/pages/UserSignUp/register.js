@@ -312,7 +312,7 @@ export default function SignUp() {
                 }}
                 disabled={loader || !uservalid || !emailvalid || !phonevalid || !passvalid}
               >
-                Sign up {loader && <ButtonCircularProgress />}
+                Sign up { <ButtonCircularProgress />}
               </Button>
               </Box>
             </Box>
