@@ -245,14 +245,7 @@ export const VerifyOtp = ({
                   
               </DialogContent>
               <DialogActions>
-                {context === 'register' && <Button
-                  variant="contained"
-                  size="large"
-                  color="primary"
-                  onClick={() => successCallback()}
-                >
-                  Do it later
-                </Button>}
+                {context === 'register'}
                 <Button 
                 variant="contained"
                 color="secondary"
