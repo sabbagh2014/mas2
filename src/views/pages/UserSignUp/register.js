@@ -139,7 +139,7 @@ export default function SignUp() {
   const signup = async () => {
     if (user.userLoggedIn && (emailVerificationSent || smsVerificationSent)) {
       setTermsPopUp(false);
-      setVerifyOTPOpen(false);
+      setVerifyOTPOpen(true);
       return;
     }
     if (!validateAll()){
