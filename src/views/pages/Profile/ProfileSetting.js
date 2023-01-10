@@ -167,9 +167,9 @@ const VerificationAlert = ({verify}) => {
   const user = useContext(UserContext);
 
   const [verifyOTPOpen, setVerifyOTPOpen] = useState(false);
-  return ( 
-   <box>
-   <Alert severity="warning" variant="outlined">
+  return (
+    <box>
+    <Alert severity="warning" variant="outlined">
       <AlertTitle>Security Verification</AlertTitle>
        To secure your account and enjoy full MAS Platform features please verify
        {' '}
@@ -182,7 +182,8 @@ const VerificationAlert = ({verify}) => {
        >
         check here!
       </Button>
-    </Alert>    <VerifyOtp 
+    </Alert>
+    <VerifyOtp 
       open={verifyOTPOpen} 
       handleClose={()=> setVerifyOTPOpen(false)}
       channels={verify}
@@ -195,7 +196,7 @@ const VerificationAlert = ({verify}) => {
         toast.success("Security Verification complete!");
       }}
     />
-    </box>   
+    </box>
   )
 }
 
@@ -384,7 +385,8 @@ export default function ProfileSettings() {
             </Grid>
             <Grid item xs={12} md={9}>
               <TextField
-                //value={speciality}
+                
+                value={speciality}
                 //error={!speciality}
                 //helperText={!speciality && "Please enter valid speciality"}
                 onChange={(e) => setspeciality(e.target.value)}
@@ -405,7 +407,7 @@ export default function ProfileSettings() {
                 focused="true"
                 multiline
                 rows={4}
-                //value={bio}
+                value={bio}
                 //error={!bio}
                 //helperText={!bio && "Please Fill in something about you"}
                 variant="outlined"
@@ -440,11 +442,20 @@ export default function ProfileSettings() {
                     </InputAdornment>
                   )}}
               />
-              <label>Phone Number</label>
             </Grid>
           </Grid>
         </Box>
- <TextField
+
+        <Box>
+          <Grid container spacing={2} 
+                direction="row"
+                justifyContent="center"
+                alignItems="center">
+            <Grid item xs={12} md={4}>
+              <label>Phone Number</label>
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <TextField
                 disabled={true}
                 fullWidth
                 variant="outlined"
@@ -455,19 +466,11 @@ export default function ProfileSettings() {
                     <InputAdornment position="end">
                       {user.userData?.phoneVerification ? <CheckCircleOutlineIcon fontSize="16" style={{ color: green[500] }} /> :
                       <Tooltip title="Phone number not verified" placement="right">
-                      <ErrorOutlineIcon fontSize="16" style={{ color: red[500] }} />                      </Tooltip>}
+                      <ErrorOutlineIcon fontSize="16" style={{ color: red[500] }} />
+                      </Tooltip>}
                     </InputAdornment>
                   )}}
-              />        <Box>
-          <Grid container spacing={2} 
-                direction="row"
-                justifyContent="center"
-                alignItems="center">
-            <Grid item xs={12} md={4}>
-              
-            </Grid>
-            <Grid item xs={12} md={8}>
-              
+              />
             </Grid>
           </Grid>
         </Box>
