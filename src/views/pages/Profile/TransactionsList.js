@@ -288,7 +288,7 @@ export default function TransactionsList() {
           <Pagination
             count={pages}
             page={page}
-            onChange={(e, v) => setPage(v)}
+            onChange={(e,v) => setPage(v)}
           />
         </Box>
     </Box>
